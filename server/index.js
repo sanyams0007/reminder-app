@@ -1,5 +1,5 @@
 const express = require('express');
-const mongoose = require('mongoose');
+//const mongoose = require('mongoose');
 const cors = require("cors");
 require('dotenv').config();
 require('./dbs/connection');
@@ -20,7 +20,7 @@ app.get('/', (req, res) => res.send("HELLO FROM BACKEND"))
 app.use("/users", UserRouter);
 
 
-/* set up port for listening to server */
+/* set up server for listening to port */
 app.listen(PORT, () => {
     console.log(`The server is listening on ${PORT}`);
 });
