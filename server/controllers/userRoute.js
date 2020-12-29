@@ -3,7 +3,7 @@ const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 
 module.exports = {
-  getUser: async (req, res) => {
+  loginUser: async (req, res) => {
     try {
       const { email, password } = req.body;
 
@@ -24,7 +24,10 @@ module.exports = {
       if (!isMatch)
         return res.status(400).json({ msg: "Invalid credentials." });
 
-      const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET);
+      /* create a token */
+      const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, {
+        expiresIn: 360000
+      });
       res.json({
         token,
         user: {
@@ -35,10 +38,11 @@ module.exports = {
       });
       //res.send("HI IT'S A GET REQUEST")
     } catch (error) {
-      res.status(400).send(error);
+      res.status(500).send(error);
     }
   },
-  postUser: async (req, res) => {
+
+  registerUser: async (req, res) => {
     /* console.log("HI IT'S A POST REQUEST"); */
     const { name, email, password, confirm_password } = req.body;
     const strongRegx = /^(.{0,5}|[^0-9]*|[^A-Z]*|[^a-z]*|[a-zA-Z0-9]*)$/;
@@ -90,11 +94,12 @@ module.exports = {
       res.status(500).json({ error: err.message });
     }
   },
-  patchUser: (req, res) => {
+
+  updateUser: (req, res) => {
     try {
       res.send("HI IT'S A PATCH REQUEST");
-    } catch (error) {
-      res.status(400).send(error);
+    } catch (err) {
+      res.status(500).json({ error: err.message });
     }
   },
 
@@ -126,6 +131,11 @@ module.exports = {
       res.status(500).json({ error: err.message });
     }
   },
+
+  loggedUser: async (req, res) => {
+
+  },
+
 };
 
 /* module.exports.getUser = getUser;
