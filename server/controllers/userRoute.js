@@ -133,7 +133,12 @@ module.exports = {
   },
 
   loggedUser: async (req, res) => {
-
+    try {
+      const user = await (await userModel.findById(req.user)).isSelected('-password');
+      res.json(user);
+    } catch (err) {
+      res.status(500).json({ error: err.message });
+    }
   },
 
 };
