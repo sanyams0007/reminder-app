@@ -87,7 +87,22 @@ module.exports = {
       });
 
       const savedUser = await user.save();
-      res.json(savedUser);
+
+      /* create a token */
+      /*  const token = jwt.sign({ id: savedUser._id }, process.env.JWT_SECRET, {
+         expiresIn: 360000
+       });
+       res.json({
+         token,
+         user: {
+           name: user.name,
+           email: user.email,
+         },
+       }); */
+      res.json({
+        name,
+        email
+      });
 
       //res.send("HI IT'S A ACCEPTABLE POST REQUEST");
     } catch (err) {
@@ -117,7 +132,7 @@ module.exports = {
   tokenIsValid: async (req, res) => {
     try {
       const token = req.header("x-auth-token");
-      /* console.log(token); */
+      //console.log("bend1", token);
       if (!token) return res.json(false);
 
       const verified = jwt.verify(token, process.env.JWT_SECRET);
@@ -134,8 +149,9 @@ module.exports = {
 
   loggedUser: async (req, res) => {
     try {
-      const user = await (await userModel.findById(req.user)).isSelected('-password');
-      res.json(user);
+      const user = await userModel.findById(req.user);
+      //console.log(user)
+      res.json({ name: user.name });
     } catch (err) {
       res.status(500).json({ error: err.message });
     }

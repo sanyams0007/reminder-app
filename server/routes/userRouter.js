@@ -11,13 +11,15 @@ const {
 } = require("../controllers/userRoute");
 const auth = require("../middleware/auth");
 
-/* router.get('/', getUser) = router.get('/user', getUser) */
+
+//@ ROUTE = /users/
+/* router.get('/', loginUser) = router.get('/user', loginUser) */
 router.post("/login", loginUser);
 router.post("/register", registerUser);
 router.post("/tokenIsValid", tokenIsValid);
 
 /* Private Route, Logged in Users can access it*/
-router.get("/", auth, loggedUser)
+router.get("/", auth, loggedUser);
 router.patch("/", auth, updateUser);
 router.delete("/", auth, deleteUser);
 
