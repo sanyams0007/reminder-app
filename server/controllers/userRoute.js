@@ -17,12 +17,12 @@ module.exports = {
       if (!user)
         return res
           .status(400)
-          .json({ msg: "No account with this email has been registered." });
+          .json({ msg: "Invalid credentials" });
 
       //if password doesn't match
       const isMatch = await bcrypt.compare(password, user.password);
       if (!isMatch)
-        return res.status(400).json({ msg: "Invalid credentials." });
+        return res.status(400).json({ msg: "Invalid credentials" });
 
       /* create a token */
       const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, {
@@ -31,7 +31,7 @@ module.exports = {
       res.json({
         token,
         user: {
-          id: user._id,
+          /*  id: user._id, */
           name: user.name,
           email: user.email,
         },
