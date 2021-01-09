@@ -7,7 +7,7 @@ module.exports = {
     try {
       const { email, password } = req.body;
 
-      //if email or password are empty
+      //if email or password is empty
       if (!email || !password)
         return res.status(400).json({ msg: "Please enter all fields" });
 
@@ -28,17 +28,19 @@ module.exports = {
       const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, {
         expiresIn: 360000
       });
+
+      /* sends back created user data in response */
       res.json({
         token,
         user: {
-          /*  id: user._id, */
+          id: user._id,
           name: user.name,
           email: user.email,
         },
       });
       //res.send("HI IT'S A GET REQUEST")
-    } catch (error) {
-      res.status(500).send(error);
+    } catch (err) {
+      res.status(500).json({ error: err.message });
     }
   },
 
@@ -99,12 +101,13 @@ module.exports = {
            email: user.email,
          },
        }); */
+
+
       res.json({
+        /* id: user._id, */
         name,
         email
       });
-
-      //res.send("HI IT'S A ACCEPTABLE POST REQUEST");
     } catch (err) {
       res.status(500).json({ error: err.message });
     }
@@ -150,8 +153,11 @@ module.exports = {
   loggedUser: async (req, res) => {
     try {
       const user = await userModel.findById(req.user);
-      //console.log(user)
-      res.json({ name: user.name });
+      res.json({
+        id: user._id,
+        name: user.name,
+        email: user.email,
+      });
     } catch (err) {
       res.status(500).json({ error: err.message });
     }
@@ -159,7 +165,3 @@ module.exports = {
 
 };
 
-/* module.exports.getUser = getUser;
-module.exports.postUser = postUser;
-module.exports.patchUser = patchUser;
-module.exports.deleteUser = deleteUser; */
