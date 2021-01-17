@@ -90,8 +90,8 @@ module.exports = {
 
       const savedUser = await user.save();
 
-      /* create a token */
-      /*  const token = jwt.sign({ id: savedUser._id }, process.env.JWT_SECRET, {
+      /* create a token 
+         const token = jwt.sign({ id: savedUser._id }, process.env.JWT_SECRET, {
          expiresIn: 360000
        });
        res.json({

@@ -19,6 +19,8 @@ module.exports = {
             // if any field is blank
             if (!title || !message)
                 return res.status(400).json({ msg: "Title and Message can't be empty" });
+            if (!phone || !email)
+                return res.status(400).json({ msg: "" });
 
             // create new reminder
             const newReminder = new reminderModel({
