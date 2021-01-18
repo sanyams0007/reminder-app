@@ -15,12 +15,21 @@ module.exports = {
 
     createReminder: async (req, res) => {
         const { title, message, remindAt, phone, email } = req.body;
+        let recDate = new Date(remindAt);
+        let cmpDate = new Date(Date.now() + 1 * 1 * 2 * 60 * 1000);
         try {
             // if any field is blank
-            if (!title || !message)
-                return res.status(400).json({ msg: "Title and Message can't be empty" });
+            if (!title || !message || !remindAt)
+                return res.status(400).json({ msg: "Please fill all fields" });
+
             if (!phone || !email)
-                return res.status(400).json({ msg: "" });
+                return res.status(400).json({ msg: "You must enable either Email or Mobile or Both" });
+
+            if (recDate.getTime() < cmpDate.getTime())
+                return res.status(400).json({ msg: "Timer is too early set it for atleast 2 min. later" });
+            /* if(date1.getTime() > date2.getTime()){
+            //date 1 is newer
+            } */
 
             // create new reminder
             const newReminder = new reminderModel({
@@ -29,6 +38,7 @@ module.exports = {
                 phone,
                 email,
                 createdBy: req.user,
+                remindAt
             });
 
             const savedReminder = await newReminder.save();

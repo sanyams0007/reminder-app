@@ -16,7 +16,7 @@ const reminderSchema = mongoose.Schema({
     },
     remindAt: {
         type: Date,
-        default: () => Date.now() + 1 * 24 * 60 * 60 * 1000,
+        /* default: () => Date.now() + 1 * 24 * 60 * 60 * 1000, */
     },
     phone: {
         type: Boolean,
