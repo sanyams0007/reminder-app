@@ -22,14 +22,12 @@ module.exports = {
             if (!title || !message || !remindAt)
                 return res.status(400).json({ msg: "Please fill all fields" });
 
-            if (!phone || !email)
+            if (phone === false && email === false)
                 return res.status(400).json({ msg: "You must enable either Email or Mobile or Both" });
 
             if (recDate.getTime() < cmpDate.getTime())
-                return res.status(400).json({ msg: "Timer is too early set it for atleast 2 min. later" });
-            /* if(date1.getTime() > date2.getTime()){
-            //date 1 is newer
-            } */
+                return res.status(400).json({ msg: "Timer is too early ,set it for atleast 2 min. later" });
+
 
             // create new reminder
             const newReminder = new reminderModel({
@@ -38,7 +36,7 @@ module.exports = {
                 phone,
                 email,
                 createdBy: req.user,
-                remindAt
+                remindAt,
             });
 
             const savedReminder = await newReminder.save();
@@ -50,7 +48,9 @@ module.exports = {
 
     updateReminder: async (req, res) => {
         const { r_id: _id } = req.params;
-        const reminder = req.body;
+        const { title, message, remindAt, phone, email } = req.body;
+        let recDate = new Date(remindAt);
+        let cmpDate = new Date(Date.now() + 1 * 1 * 2 * 60 * 1000);
         try {
             // validating id of object
             if (!mongoose.Types.ObjectId.isValid(_id))
@@ -59,10 +59,17 @@ module.exports = {
                     .json({ msg: "No Reminder with that id." });
 
             // if any field is blank
-            if (!reminder.title || !reminder.message)
+            if (!title || !message)
                 return res.status(400).json({ msg: "Title and Message can't be empty" });
 
-            const updatedReminder = await reminderModel.findByIdAndUpdate(_id, reminder, { new: true });
+            if (phone === false && email === false)
+                return res.status(400).json({ msg: "You must enable either Email or Mobile or Both" });
+
+            if (recDate.getTime() < cmpDate.getTime())
+                return res.status(400).json({ msg: "Timer is too early ,set it for atleast 2 min. later" });
+
+
+            const updatedReminder = await reminderModel.findByIdAndUpdate(_id, req.body, { new: true });
             res.json(updatedReminder);
         } catch (err) {
             res.status(500).json({ error: err.message });
@@ -70,9 +77,10 @@ module.exports = {
     },
 
     deleteReminder: async (req, res) => {
-        const { r_id: _id } = req.user;
+        const { _id } = req.params;
         try {
-            if (!mongoose.Types.ObjectId.isValid(_id))
+            const reminder = await reminderModel.findOne({ createdBy: req.user, _id: _id });
+            if (!mongoose.Types.ObjectId.isValid(_id) || !reminder)
                 return res
                     .status(400)
                     .json({ msg: "No Reminder found" });
