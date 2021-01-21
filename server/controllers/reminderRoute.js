@@ -47,7 +47,7 @@ module.exports = {
     },
 
     updateReminder: async (req, res) => {
-        const { r_id: _id } = req.params;
+        const { _id } = req.params;
         const { title, message, remindAt, phone, email } = req.body;
         let recDate = new Date(remindAt);
         let cmpDate = new Date(Date.now() + 1 * 1 * 2 * 60 * 1000);
@@ -68,8 +68,8 @@ module.exports = {
             if (recDate.getTime() < cmpDate.getTime())
                 return res.status(400).json({ msg: "Timer is too early ,set it for atleast 2 min. later" });
 
-
             const updatedReminder = await reminderModel.findByIdAndUpdate(_id, req.body, { new: true });
+            //console.log(updatedReminder)
             res.json(updatedReminder);
         } catch (err) {
             res.status(500).json({ error: err.message });
