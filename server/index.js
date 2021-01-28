@@ -1,7 +1,8 @@
 const express = require("express");
-const mongoose = require("mongoose");
-const reminderModel = require("./models/reminderModel");
+//const mongoose = require("mongoose");
+//const reminderModel = require("./models/reminderModel");
 const cors = require("cors");
+const scheduler = require("./scheduler");
 require("dotenv").config();
 require("./dbs/connection");
 
@@ -30,3 +31,6 @@ app.use("/reminders", ReminderRouter);
 app.listen(PORT, () => {
   console.log(`The server is listening on ${PORT}`);
 });
+
+scheduler.start();
+module.exports = app;

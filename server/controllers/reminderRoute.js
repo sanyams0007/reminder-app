@@ -16,9 +16,9 @@ module.exports = {
   },
 
   createReminder: async (req, res) => {
-    const { title, message, remindAt, phone, email } = req.body;
+    const { title, message, remindAt, phone, email, reference } = req.body;
     let recDate = new Date(remindAt);
-    let cmpDate = new Date(Date.now() + 1 * 1 * 5 * 60 * 1000);
+    let cmpDate = new Date(Date.now() + 1 * 1 * 1 * 60 * 1000);
     try {
       // if any field is blank
       if (!title || !message || !remindAt)
@@ -30,9 +30,9 @@ module.exports = {
           .json({ msg: "You must enable either Email or Mobile or Both" });
 
       if (recDate.getTime() < cmpDate.getTime())
-        return res
-          .status(400)
-          .json({ msg: "Timer is too early ,set it for atleast 5 min. later" });
+        return res.status(400).json({
+          msg: "Timer is too early ,set it for atleast 1 minute later",
+        });
 
       // create new reminder
       const newReminder = new reminderModel({
@@ -42,10 +42,11 @@ module.exports = {
         email,
         createdBy: req.user,
         remindAt,
+        sendEmail: reference.email,
       });
 
       const savedReminder = await newReminder.save();
-      console.log(savedReminder);
+      //console.log(savedReminder);
       res.json(savedReminder);
     } catch (err) {
       res.status(500).json({ error: err.message });
@@ -54,10 +55,10 @@ module.exports = {
 
   updateReminder: async (req, res) => {
     const { _id } = req.params;
-    const { oldDate } = req.query;
     const { title, message, remindAt, phone, email } = req.body;
+    console.log("updated time ", new Date(remindAt));
     let recDate = new Date(remindAt);
-    let cmpDate = new Date(Date.now() + 1 * 1 * 60 * 60 * 1000);
+    let cmpDate = new Date(Date.now() + 1 * 1 * 1 * 60 * 1000);
     try {
       // validating id of object
       if (!mongoose.Types.ObjectId.isValid(_id))
@@ -75,9 +76,9 @@ module.exports = {
           .json({ msg: "You must enable either Email or Mobile or Both" });
 
       if (recDate.getTime() < cmpDate.getTime())
-        return res
-          .status(400)
-          .json({ msg: "Timer is too early ,set it for atleast 1 hour later" });
+        return res.status(400).json({
+          msg: "Timer is too early ,set it for atleast 1 minute later",
+        });
 
       const updatedReminder = await reminderModel.findByIdAndUpdate(
         _id,
