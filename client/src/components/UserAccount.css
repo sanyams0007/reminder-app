@@ -1,0 +1,103 @@
+/* * {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+} */
+.user_main_container {
+  position: relative;
+  width: 100vw;
+  height: 100%;
+  background-color: #f3e6e8;
+  background-image: linear-gradient(315deg, #f3e6e8 0%, #d5d0e5 74%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.user_account {
+  text-align: center;
+  border: 1px solid;
+  width: 50%;
+  font-family: "Montserrat";
+  color: #0e153a;
+}
+
+.user_card {
+  /* max-width: 700px; */
+  width: 100%;
+  /* border: 1px solid salmon; */
+  /*  background-color: lightblue; */
+  height: 80%;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.user_card .title {
+  font-size: 30px;
+}
+
+.user_card > p {
+  font-size: 20px;
+  /* background-color: antiquewhite; */
+}
+
+.icon_container {
+  margin: auto;
+  /* border: 1px solid; */
+  width: 60%;
+  /* margin: 10px 0; */
+  display: flex;
+  /*  background-color: aquamarine; */
+  align-items: center;
+  justify-content: first baseline;
+  margin-top: 10px;
+}
+
+.icon_container > label {
+  font-weight: 600;
+  margin-left: 10px;
+}
+.icon_container > span {
+  margin-left: 20px;
+}
+
+.account_btns {
+  display: flex;
+  justify-content: space-around;
+  /* border: 1px solid; */
+  /* margin-top: 150px; */
+}
+
+.user_btn {
+  /* width: 30%; */
+  font-family: "Montserrat";
+  border: none;
+  font-size: 17px;
+  padding: 10px 20px;
+  color: white;
+}
+
+.delete_btn {
+  background-color: #e2434b;
+}
+
+.update_btn {
+  background-color: #17b978;
+}
+
+@media screen and (max-width: 768px) {
+  /* .user_btn {
+    width: 50%;
+  } */
+}
+
+@media screen and (max-width: 768px) {
+  .user_account {
+    width: 90%;
+  }
+
+  /* .user_btn {
+    width: 50%;
+  } */
+}

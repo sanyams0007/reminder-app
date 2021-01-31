@@ -1,0 +1,32 @@
+*,
+::after,
+::before {
+  text-decoration: none;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --primary-color: black;
+  --secondary-color: lightcoral;
+  --primary-font: "Raleway";
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--primary-font);
+}
+
+input[type="text"] {
+  font-family: var(--primary-font);
+  font-family: "Montserrat";
+}
+
+button {
+  font-family: "Montserrat";
+}

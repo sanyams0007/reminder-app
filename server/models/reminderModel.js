@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 const nodemailer = require("nodemailer");
-const Nexmo = require("nexmo");
+//const Nexmo = require("nexmo");
 const fast2sms = require("fast-two-sms");
 /* default: () => Date.now() + 1 * 24 * 60 * 60 * 1000, */
 /* default: () => Date.now() + 7*24*60*60*1000 */

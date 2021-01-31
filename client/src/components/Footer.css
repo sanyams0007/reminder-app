@@ -1,0 +1,17 @@
+.footer {
+  height: 8vh;
+  background-color: #f1f1f1;
+  width: 100%;
+  margin-top: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-top: 5px solid#364f6b
+}
+
+
+
+.heart {
+  color: red;
+  padding-top: 5px;
+}

@@ -1,0 +1,254 @@
+.new_reminder {
+  position: relative;
+  height: 100%;
+  max-width: 100%;
+  display: grid;
+  grid-template-rows: 20% 80%;
+  grid-template-columns: 25% 75%;
+  grid-template-areas:
+    "main_heading main_heading"
+    "left right";
+  overflow: hidden;
+}
+
+.react-time-picker__clear-button {
+  display: none;
+}
+.main_heading {
+  height: 100%;
+  background-color: #cabbe9;
+  grid-column: 1/ -1;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  padding-left: 25%;
+}
+
+.main_heading > h2 {
+  font-size: 35px;
+}
+
+.left {
+  background-color: #a1eafb;
+  height: 100%;
+  z-index: 1;
+}
+
+.right {
+  padding: 35px 50px;
+  height: 100%;
+  /* background-color: beige; */
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+
+.right form {
+  text-align: center;
+  /* border-radius: 10px; */
+  width: 60%;
+  height: 70%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  background-color: rgba(0, 0, 0, 0.2);
+}
+
+.create_error {
+  width: 80%;
+  align-self: center;
+  display: flex;
+  justify-content: space-between;
+  background-color: #f8d6d6;
+  border: 1px solid #e07c7c;
+  border-radius: 5px;
+  padding: 5px;
+  align-items: center;
+}
+
+.create_error > small {
+  width: 85%;
+  text-align: start;
+  padding: 2px;
+}
+
+.create_error > button {
+  /*  width: 20px; */
+  height: 20px;
+  border-radius: 50%;
+  background-color: #e07c7c;
+  border: none;
+  outline: none;
+}
+
+.options {
+  /* background-color: aqua; */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.input {
+  /* margin-top: 5px; */
+  /* margin-left: 50px; */
+  width: 40%;
+  /* background-color: lightpink; */
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.right form input {
+  align-self: center;
+  width: 80%;
+  padding: 7px 0 7px 10px;
+  border: none;
+  font-family: Montserrat;
+  /* border-radius: 25px; */
+}
+
+.time_control {
+  padding-left: 20px;
+  outline: none;
+  font-weight: bold;
+}
+
+.react-time-picker__clock {
+  display: none;
+}
+
+.react-time-picker {
+  width: 50%;
+  align-self: center;
+  margin: 8px;
+}
+
+.react-time-picker__wrapper {
+  align-items: center;
+  justify-content: center;
+}
+
+.right form input[type="checkbox"] {
+  position: relative;
+  -webkit-appearance: none;
+  appearance: none;
+  height: 20px;
+  width: 36px;
+  background-color: lightcoral;
+  border-radius: 10px;
+  cursor: pointer;
+  outline: none;
+  transition: 0.3s;
+}
+
+.right form input[type="checkbox"]::before {
+  content: "";
+  position: absolute;
+  height: 18px;
+  width: 18px;
+  background-color: #d5d5d5;
+  border-radius: 50%;
+  top: 5%;
+  left: 5%;
+  transition: 0.3s;
+}
+
+.right form input[type="checkbox"]::after {
+  content: "FF";
+  position: absolute;
+  color: lightcoral;
+  font-size: 16px;
+  bottom: 5%;
+  left: 105%;
+  letter-spacing: 1px;
+  transition: 0.3s;
+}
+
+.right form input[type="checkbox"]:checked {
+  background-color: #17b978;
+}
+
+.right form input[type="checkbox"]:checked:before {
+  background-color: #303a52;
+  left: 45%;
+  height: 18px;
+  width: 18px;
+}
+
+.right form input[type="checkbox"]:checked:after {
+  content: "N";
+  color: #17b978;
+}
+
+.right form .btn {
+  width: 50%;
+  padding: 10px;
+  align-self: center;
+  border: none;
+  /* border-radius: 50px; */
+  background-color: #2cb978;
+  color: white;
+  cursor: pointer;
+  font-family: "Montserrat";
+}
+
+@media screen and (max-width: 960px) {
+  .new_reminder {
+    grid-template-columns: 35% 65%;
+  }
+
+  .right form {
+    width: 75%;
+  }
+}
+@media screen and (max-width: 768px) {
+  .new_reminder {
+    min-height: 100%;
+    grid-template-rows: 10% 40%;
+    grid-template-columns: 100%;
+    grid-template-areas:
+      "main_heading"
+      "left"
+      "right";
+  }
+
+  .main_heading {
+    justify-content: center;
+    padding-left: 0;
+  }
+
+  .main_heading > h2 {
+    font-weight: 600;
+    font-size: 25px;
+  }
+
+  .right {
+    padding: 0;
+    height: 106%;
+    /* align-items: center; */
+    justify-content: center;
+  }
+
+  .right form {
+    height: 100%;
+    width: 100%;
+    position: relative;
+    justify-content: space-evenly;
+    border-radius: 0;
+    top: -20px;
+    padding-top: 30px;
+    padding-bottom: 20px;
+  }
+
+  .right form > input,
+  .right form > button,
+  .right form .options {
+    /* margin: 6px; */
+  }
+
+  .left {
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+  }
+}

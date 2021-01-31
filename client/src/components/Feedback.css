@@ -1,0 +1,107 @@
+.feedback {
+  background: url("https://www.hubgets.com/blog/wp-content/uploads/Reasons-worth-colaborating-with-your-teammates.jpg");
+  height: 100%;
+  min-width: 100%;
+  background-attachment: fixed;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+.form-container {
+  width: 100%;
+  height: 100%;
+  background-color: rgba(158, 87, 157, 0.5);
+  position: relative;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.form-container header {
+  width: 70%;
+  /* margin: 20px auto; */
+  /* font-size: 1.5rem; */
+  text-align: center;
+  color: white;
+  /* border: 1px solid; */
+}
+
+.survey-form {
+  /* padding: 20px 0; */
+  width: 70%;
+  border-radius: 5px;
+  background-color: rgba(48, 58, 82, 0.7);
+  margin-bottom: 30px;
+  /* font-size: 1.3rem; */
+  /* display: flex;
+  
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  background-color: aqua;
+  margin: auto;
+  max-width: 85%;
+  height: 80%;
+  padding: 5px; */
+}
+
+.question {
+  color: white;
+}
+
+.qa input[type="radio"] {
+  width: 20px;
+  height: 20px;
+}
+
+.qa {
+  /*  background-color: antiquewhite; */
+  width: 70%;
+  display: flex;
+  flex-direction: column;
+  margin: 15px auto;
+}
+
+.qa div.radio_options {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+}
+
+.qa textarea {
+  margin-top: 10px;
+  font-family: "Montserrat";
+}
+
+.radio_option {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.radio_option > label {
+  color: white;
+}
+
+.answer {
+  padding: 7px;
+  margin-top: 5px;
+}
+
+.submit {
+  color: white;
+  padding-left: 0;
+  background-color: #17b978;
+  border: none;
+  font-family: "Montserrat";
+}
+
+@media screen and (max-width: 768px) {
+  .form-container header,
+  .survey-form {
+    width: 85%;
+  }
+  .qa {
+    width: 90%;
+  }
+}

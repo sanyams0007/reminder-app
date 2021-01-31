@@ -1,0 +1,34 @@
+.reminders {
+  position: relative;
+  /* height: 100%; */
+  /*  background-color:#e8ffe8 ; */
+  /*  margin: 0 auto; */
+  padding: 20px 100px 60px;
+}
+
+.reminders_container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  grid-gap: 1rem;
+  grid-auto-rows: auto;
+  /* grid-auto-flow: dense; */
+  /* padding: 10px 0; */
+
+  /* background-color: lightcoral; */
+}
+
+.modal {
+  transition: 0.5s;
+}
+
+@media screen and (max-width: 960px) {
+  .reminders {
+    padding: 20px 50px;
+  }
+}
+
+@media screen and (max-width: 420px) {
+  .reminders {
+    padding: 5px 25px;
+  }
+}

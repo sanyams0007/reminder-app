@@ -1,0 +1,110 @@
+.calender_container {
+  height: 100%;
+  /* width: 300px;
+    border: 1px solid black;
+    margin: 0 auto;
+    box-shadow: 10px 10px 0px black; */
+  font-family: "Montserrat";
+  width: 85%;
+  margin: 10px auto;
+}
+
+.calender_container > p {
+  text-transform: capitalize;
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.calender_header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid white;
+}
+
+.calender {
+  padding: 20px 0;
+}
+
+.month_text {
+  text-align: center;
+  font-weight: 700;
+  font-size: 22px;
+  letter-spacing: 2px;
+  color: #fdfdfd;
+}
+
+.weekday {
+  text-align: center;
+  padding: 10px 0;
+  font-weight: 600;
+  color: black;
+  /* font-family: 'montserrat'; */
+  /* background-color: aliceblue; */
+}
+
+.date {
+  padding: 5px;
+  /* background-color: brown; */
+  text-align: center;
+  color: #fdfdfd;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.1s;
+}
+.date:hover {
+  color: lightcoral;
+}
+
+.pastdate {
+  color: darkgray;
+}
+
+.btn_month {
+  text-align: center;
+  background: transparent;
+  border: none;
+  background-color: rgba(255, 255, 255, 0.7);
+  outline: none;
+  height: 2rem;
+  width: 2rem;
+  border-radius: 50%;
+}
+
+.calender_footer {
+  padding: 15px;
+  text-align: center;
+}
+
+@media screen and (max-width: 768px) {
+  .calender_container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    margin: 0 auto;
+  }
+
+  .calender_header {
+    height: 40px;
+  }
+
+  .calender {
+    padding: 0;
+  }
+
+  .month_text {
+    font-weight: 100;
+  }
+  .weekday {
+    padding: 0;
+  }
+
+  .date {
+    padding: 0;
+  }
+
+  .calender_footer {
+    font-size: 15px;
+    padding-bottom: 2px;
+  }
+}

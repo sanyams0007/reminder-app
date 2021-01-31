@@ -1,0 +1,54 @@
+.reminder {
+  position: relative;
+  font-family: "Montserrat";
+  padding: 20px;
+  position: relative;
+  box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+  background-color: rgba(#fad0c4, #fad0c4, #fad0c4, 0.2);
+  overflow: hidden;
+  border-top: 1px solid rgba(255, 255, 255, 0.5);
+  border-left: 1px solid rgba(255, 255, 255, 0.5);
+  backdrop-filter: blur(5px);
+  /* min-height: 100px;
+    height: auto;
+    overflow:auto */
+}
+
+.reminder p.message {
+  text-align: justify;
+}
+
+.reminder p > span {
+  background-color: #a6acec;
+  border-radius: 5px;
+  margin-left: 5px;
+  padding: 2px 4px;
+}
+
+.rem_btn {
+  position: absolute;
+  bottom: 0.5%;
+  right: 1%;
+}
+
+.rem_btn .btn {
+  margin-left: 10px;
+  padding: 3px;
+  border: none;
+  outline: none;
+  border-radius: 5px;
+  font-size: 35px;
+}
+
+.rem_btn .btn:hover {
+  color: #d72323;
+}
+/* 
+width: 1200px;
+  min-height: 100px;
+  height: auto;
+  margin: 80px auto 0px auto;
+  background-color: black;
+  padding: 10px 10px; 
+  overflow:auto */
