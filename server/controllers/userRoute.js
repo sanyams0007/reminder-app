@@ -14,19 +14,15 @@ module.exports = {
       let user = await userModel.findOne({ email: email });
 
       //if user doesn't exist
-      if (!user)
-        return res
-          .status(400)
-          .json({ msg: "Invalid credentials" });
+      if (!user) return res.status(400).json({ msg: "Invalid credentials" });
 
       //if password doesn't match
       const isMatch = await bcrypt.compare(password, user.password);
-      if (!isMatch)
-        return res.status(400).json({ msg: "Invalid credentials" });
+      if (!isMatch) return res.status(400).json({ msg: "Invalid credentials" });
 
       /* create a token */
       const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, {
-        expiresIn: 360000
+        expiresIn: 360000,
       });
 
       /* sends back created user data in response */
@@ -36,6 +32,7 @@ module.exports = {
           id: user._id,
           name: user.name,
           email: user.email,
+          phone: user.phone,
         },
       });
       //res.send("HI IT'S A GET REQUEST")
@@ -46,11 +43,11 @@ module.exports = {
 
   registerUser: async (req, res) => {
     /* console.log("HI IT'S A POST REQUEST"); */
-    const { name, email, password, confirm_password } = req.body;
+    const { name, email, phone, password, confirm_password } = req.body;
     const strongRegx = /^(.{0,5}|[^0-9]*|[^A-Z]*|[^a-z]*|[a-zA-Z0-9]*)$/;
     try {
       // if any field is blank
-      if (!name || !email || !password || !confirm_password)
+      if (!name || !email || !password || !confirm_password || !phone)
         return res.status(400).json({ msg: "Please enter all fields" });
 
       //if passwords doesn't match
@@ -85,6 +82,7 @@ module.exports = {
       user = new userModel({
         name,
         email,
+        phone,
         password: passwordHash,
       });
 
@@ -102,11 +100,11 @@ module.exports = {
          },
        }); */
 
-
       res.json({
         /* id: user._id, */
         name,
-        email
+        email,
+        phone,
       });
     } catch (err) {
       res.status(500).json({ error: err.message });
@@ -122,10 +120,10 @@ module.exports = {
   },
 
   deleteUser: async (req, res) => {
+    const { user: _id } = req;
     try {
-      const deletedUser = await userModel.findByIdAndDelete(req.user);
+      const deletedUser = await userModel.findByIdAndRemove({ _id: _id });
       res.json(deletedUser);
-
       //res.send("HI IT'S A DELETE REQUEST");
     } catch (err) {
       res.status(500).json({ error: err.message });
@@ -157,11 +155,10 @@ module.exports = {
         id: user._id,
         name: user.name,
         email: user.email,
+        phone: user.phone,
       });
     } catch (err) {
       res.status(500).json({ error: err.message });
     }
   },
-
 };
-

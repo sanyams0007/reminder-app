@@ -5,6 +5,7 @@ const {
   createReminder,
   updateReminder,
   deleteReminder,
+  deleteAllReminders,
 } = require("../controllers/reminderRoute");
 const auth = require("../middleware/auth");
 
@@ -14,5 +15,6 @@ router.get("/", auth, getReminders);
 router.post("/", auth, createReminder);
 router.patch("/:_id", auth, updateReminder);
 router.delete("/:_id", auth, deleteReminder);
+router.delete("/all", auth, deleteAllReminders);
 
 module.exports = router;

@@ -9,6 +9,7 @@ require("./dbs/connection");
 /* Routers */
 const UserRouter = require("./routes/userRouter");
 const ReminderRouter = require("./routes/reminderRouter");
+const FeedbackRouter = require("./routes/feedbackRouter");
 
 /* Constant Variables */
 const PORT = process.env.PORT | 5000;
@@ -24,6 +25,7 @@ app.use(cors());
 app.get("/", (req, res) => res.send("HELLO FROM BACKEND"));
 app.use("/users", UserRouter);
 app.use("/reminders", ReminderRouter);
+app.use("/feedback", FeedbackRouter);
 
 /* Scheduler for App */
 

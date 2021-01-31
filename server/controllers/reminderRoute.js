@@ -16,9 +16,17 @@ module.exports = {
   },
 
   createReminder: async (req, res) => {
-    const { title, message, remindAt, phone, email, reference } = req.body;
+    const {
+      title,
+      message,
+      remindAt,
+      phone,
+      email,
+      userEmail,
+      userPhone,
+    } = req.body;
     let recDate = new Date(remindAt);
-    let cmpDate = new Date(Date.now() + 1 * 1 * 1 * 60 * 1000);
+    let cmpDate = new Date(Date.now() + 1 * 1 * 1 * 30 * 1000);
     try {
       // if any field is blank
       if (!title || !message || !remindAt)
@@ -42,7 +50,8 @@ module.exports = {
         email,
         createdBy: req.user,
         remindAt,
-        sendEmail: reference.email,
+        userEmail,
+        userPhone,
       });
 
       const savedReminder = await newReminder.save();
@@ -55,10 +64,19 @@ module.exports = {
 
   updateReminder: async (req, res) => {
     const { _id } = req.params;
-    const { title, message, remindAt, phone, email } = req.body;
-    console.log("updated time ", new Date(remindAt));
+    console.log(req.body);
+    const {
+      title,
+      message,
+      remindAt,
+      phone,
+      email,
+      userEmail,
+      userPhone,
+    } = req.body;
+    //console.log("updated time ", new Date(remindAt));
     let recDate = new Date(remindAt);
-    let cmpDate = new Date(Date.now() + 1 * 1 * 1 * 60 * 1000);
+    let cmpDate = new Date(Date.now() + 1 * 1 * 1 * 30 * 1000);
     try {
       // validating id of object
       if (!mongoose.Types.ObjectId.isValid(_id))
@@ -82,7 +100,16 @@ module.exports = {
 
       const updatedReminder = await reminderModel.findByIdAndUpdate(
         _id,
-        req.body,
+        {
+          title,
+          message,
+          phone,
+          email,
+          createdBy: req.user,
+          remindAt,
+          userEmail,
+          userPhone,
+        },
         { new: true }
       );
       //console.log(updatedReminder)
@@ -105,6 +132,21 @@ module.exports = {
       const deletedReminder = await reminderModel.findByIdAndDelete(_id);
       res.json(deletedReminder);
     } catch (err) {
+      res.status(500).json({ error: err.message });
+    }
+  },
+  deleteAllReminders: async (req, res) => {
+    console.log(req.user);
+    const { user: _id } = req;
+    try {
+      const deletedReminders = await reminderModel.remove({ createdBy: _id });
+      //User.deleteMany({ age: { $gte: 15 } })
+      /*  const deletedData = await reminderModel.remove({
+        createdBy: req.user,
+      }); */
+      res.json(deletedReminders);
+    } catch (err) {
+      res.json(err);
       res.status(500).json({ error: err.message });
     }
   },
