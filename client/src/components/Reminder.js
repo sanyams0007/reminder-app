@@ -43,7 +43,6 @@ const Reminder = (props) => {
     <div className="reminder" style={{ backgroundImage: props.bgimage }}>
       <h3>{props.rem.title}</h3>
       <p className="message">{props.rem.message}</p>
-      <p>{props.rem._id}</p>
       <p>
         Notification on:
         {props.rem.email ? <span>email</span> : null}

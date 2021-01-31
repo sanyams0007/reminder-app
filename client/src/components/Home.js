@@ -18,7 +18,7 @@ const Home = () => {
             Get Started- It's Free
           </button>
         </div>
-        <img src={timesvg} className="home_img" />
+        <img src={timesvg} className="home_img" alt="home" />
       </div>
     </div>
   );

@@ -107,7 +107,7 @@ const Calender = (props) => {
     props.updateValue(
       new Date(date.year, date.month, date.date).toLocaleDateString()
     );
-    console.log(props.value);
+    //console.log(props.value);
     setSelectedDate(new Date(date.year, date.month, date.date));
     //props.updateValue(new Date(date.year, date.month, date.date).toLocaleDateString());
     //props.updateValue(selectedDate.toLocaleDateString());

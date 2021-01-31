@@ -122,8 +122,6 @@ reminderSchema.statics.sendNotifications = function (callback) {
       `, // html body
       });
       console.log(reminder.email, "  ", reminder.userEmail);
-      /* console.log("Message sent: %s", info.messageId);
-         console.log("Preview URL: %s", nodemailer.getTestMessageUrl(info)); */
     } catch (error) {
       console.log(error);
     }
@@ -135,8 +133,13 @@ reminderSchema.statics.sendNotifications = function (callback) {
       message: reminder.message,
       numbers: [reminder.userPhone],
     };
-    const response = await fast2sms.sendMessage(options);
-    //console.log(response);
+    try {
+      const response = await fast2sms.sendMessage(options);
+      //console.log(response);
+    } catch (error) {
+      console.log(error);
+    }
+
     /* try {
       const nexmo = new Nexmo(
         {

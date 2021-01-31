@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./Feedback.css";
 import { withRouter } from "react-router-dom";
 //import UserAuthContext from "../context/UserAuthContext";
@@ -27,6 +27,7 @@ const Feedback = () => {
         "http://localhost:5000/feedback",
         feedback
       );
+      //console.log(newFeedback);
     } catch (error) {
       console.log(error.response.data);
     }
