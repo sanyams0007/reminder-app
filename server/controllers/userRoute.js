@@ -35,14 +35,12 @@ module.exports = {
           phone: user.phone,
         },
       });
-      //res.send("HI IT'S A GET REQUEST")
     } catch (err) {
       res.status(500).json({ error: err.message });
     }
   },
 
   registerUser: async (req, res) => {
-    /* console.log("HI IT'S A POST REQUEST"); */
     const { name, email, phone, password, confirm_password } = req.body;
     const strongRegx = /^(.{0,5}|[^0-9]*|[^A-Z]*|[^a-z]*|[a-zA-Z0-9]*)$/;
     try {
@@ -124,7 +122,6 @@ module.exports = {
     try {
       const deletedUser = await userModel.findByIdAndRemove({ _id: _id });
       res.json(deletedUser);
-      //res.send("HI IT'S A DELETE REQUEST");
     } catch (err) {
       res.status(500).json({ error: err.message });
     }
@@ -133,7 +130,6 @@ module.exports = {
   tokenIsValid: async (req, res) => {
     try {
       const token = req.header("x-auth-token");
-      //console.log("bend1", token);
       if (!token) return res.json(false);
 
       const verified = jwt.verify(token, process.env.JWT_SECRET);

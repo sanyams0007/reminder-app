@@ -18,6 +18,6 @@ router.post("/tokenIsValid", tokenIsValid);
 /* Private Route, Logged in Users can access it*/
 router.get("/", auth, loggedUser);
 router.patch("/", auth, updateUser);
-router.delete("/", auth, deleteUser);
+//router.delete("/", auth, deleteUser);
 
 module.exports = router;

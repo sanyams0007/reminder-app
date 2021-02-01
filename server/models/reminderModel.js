@@ -1,6 +1,5 @@
 const mongoose = require("mongoose");
 const nodemailer = require("nodemailer");
-//const Nexmo = require("nexmo");
 const fast2sms = require("fast-two-sms");
 /* default: () => Date.now() + 1 * 24 * 60 * 60 * 1000, */
 /* default: () => Date.now() + 7*24*60*60*1000 */
@@ -44,7 +43,7 @@ const reminderSchema = mongoose.Schema({
 reminderSchema.methods.isItTheTime = function (date) {
   /* console.log("withinStart @ ", date);
   console.log("remind @ ", this.remindAt);
-  console.log("withinEnd @ ", new Date(date.getTime() + 60000));
+  console.log("withinEnd @ ", new Date(date.getTime() + 30000));
   console.log(this.remindAt >= date);
   console.log(this.remindAt < date.getTime() + 60000); */
   return (
@@ -74,24 +73,13 @@ reminderSchema.statics.sendNotifications = function (callback) {
   function sendNotifications(reminders) {
     reminders.forEach(function (reminder) {
       if (reminder.email) {
-        console.log(
-          "Sending email @ ",
-          reminder.userEmail,
-          " Remind @ ",
-          reminder.remindAt
-        );
+        //console.log("Sending email @ ", reminder.userEmail);
         sendEmail(reminder);
       }
       if (reminder.phone) {
-        console.log(
-          "Sending Message @ ",
-          reminder.userPhone,
-          " Remind @ ",
-          reminder.remindAt
-        );
+        //console.log("Sending Message @ ", reminder.userPhone);
         sendMessage(reminder);
       }
-      /* if (reminder.phone) console.log("phone"); */
     });
     if (callback) {
       callback.call();
@@ -100,28 +88,25 @@ reminderSchema.statics.sendNotifications = function (callback) {
 
   async function sendEmail(reminder) {
     try {
-      //let testAccount = await nodemailer.createTestAccount();
       let transporter = nodemailer.createTransport({
         service: "Gmail",
-        //port: 587,
-        // secure: false, // true for 465, false for other ports
         auth: {
-          user: process.env.GMAIL_USER, // generated ethereal user
-          pass: process.env.GMAIL_PASS, // generated ethereal password
+          user: process.env.GMAIL_USER,
+          pass: process.env.GMAIL_PASS,
         },
       });
       let info = await transporter.sendMail({
         from: '"EDAY Reminders 👻" <edayreminders@gmail.com>', // sender address
         to: reminder.userEmail, // list of receivers
         subject: "it's a Reminder", // Subject line
-        text: "Hello there!", // plain text body
+        text: reminder.message, // plain text body
         html: `
-            <p>Hello there you have a reminder for today,did you forgot it?</p>
+            <p>Hello there you have a reminder for today,did you forgot it ?</p>
             <h1>${reminder.title}</h1>
             <p>${reminder.message}</p>
       `, // html body
       });
-      console.log(reminder.email, "  ", reminder.userEmail);
+      //console.log(reminder.email, "  ", reminder.userEmail);
     } catch (error) {
       console.log(error);
     }
@@ -139,24 +124,6 @@ reminderSchema.statics.sendNotifications = function (callback) {
     } catch (error) {
       console.log(error);
     }
-
-    /* try {
-      const nexmo = new Nexmo(
-        {
-          apiKey: "3e44bc99",
-          apiSecret: "urxKZrRGc7Mik4SW",
-        },
-        { debug: true }
-      );
-
-      const from = "Eday Reminders";
-      const to = `917726895816`;
-      const text = "or lodu kaisa hai";
-
-      nexmo.message.sendSms(from, to, text);
-    } catch (error) {
-      console.log(error);
-    } */
   }
 };
 

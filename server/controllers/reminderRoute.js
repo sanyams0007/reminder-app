@@ -64,7 +64,7 @@ module.exports = {
 
   updateReminder: async (req, res) => {
     const { _id } = req.params;
-    console.log(req.body);
+    //console.log(req.body);
     const {
       title,
       message,
@@ -74,7 +74,6 @@ module.exports = {
       userEmail,
       userPhone,
     } = req.body;
-    //console.log("updated time ", new Date(remindAt));
     let recDate = new Date(remindAt);
     let cmpDate = new Date(Date.now() + 1 * 1 * 1 * 30 * 1000);
     try {
@@ -140,10 +139,6 @@ module.exports = {
     const { user: _id } = req;
     try {
       const deletedReminders = await reminderModel.remove({ createdBy: _id });
-      //User.deleteMany({ age: { $gte: 15 } })
-      /*  const deletedData = await reminderModel.remove({
-        createdBy: req.user,
-      }); */
       res.json(deletedReminders);
     } catch (err) {
       res.json(err);

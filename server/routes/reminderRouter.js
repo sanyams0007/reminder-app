@@ -15,6 +15,6 @@ router.get("/", auth, getReminders);
 router.post("/", auth, createReminder);
 router.patch("/:_id", auth, updateReminder);
 router.delete("/:_id", auth, deleteReminder);
-router.delete("/all", auth, deleteAllReminders);
+//router.delete("/all", auth, deleteAllReminders);
 
 module.exports = router;
