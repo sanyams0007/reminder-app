@@ -129,7 +129,7 @@ const Login = (props) => {
               placeholder="Name"
               value={registerData.name}
               onChange={changeRegisterData}
-              /* required */
+              required
             />
             <input
               type="email"
@@ -137,7 +137,7 @@ const Login = (props) => {
               placeholder="Email"
               value={registerData.email}
               onChange={changeRegisterData}
-              /* required */
+              required
             />
             <input
               type="number"
@@ -145,7 +145,7 @@ const Login = (props) => {
               placeholder="Phone Number"
               value={registerData.phone}
               onChange={changeRegisterData}
-              /* required */
+              required
             />
             <input
               type="password"
@@ -153,7 +153,7 @@ const Login = (props) => {
               placeholder="Password"
               value={registerData.password}
               onChange={changeRegisterData}
-              /* required */
+              required
             />
             <input
               type="password"
@@ -161,7 +161,7 @@ const Login = (props) => {
               placeholder="Confirm Password"
               value={registerData.confirm_password}
               onChange={changeRegisterData}
-              /* required */
+              required
             />
             <button className="main_btn" type="submit">
               Sign Up
@@ -183,7 +183,7 @@ const Login = (props) => {
               placeholder="Email"
               value={loginData.email}
               onChange={changeLoginData}
-              /* required */
+              required
             />
             <input
               type="password"
@@ -191,7 +191,7 @@ const Login = (props) => {
               placeholder="Password"
               value={loginData.password}
               onChange={changeLoginData}
-              /* required */
+              required
             />
             <button className="main_btn" type="submit">
               Sign in
