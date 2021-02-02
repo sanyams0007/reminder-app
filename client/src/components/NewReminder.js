@@ -120,7 +120,7 @@ const NewReminder = () => {
       if (state.currentId) {
         //console.log(state.currentId);
         const updatedReminder = await axios.patch(
-          `http://localhost:5000/reminders/${state.currentId}`,
+          `https://edayreminder-app.herokuapp.com/reminders/${state.currentId}`,
           data
         );
         console.log(updatedReminder.data);
@@ -130,7 +130,7 @@ const NewReminder = () => {
         });
       } else {
         const newReminder = await axios.post(
-          "http://localhost:5000/reminders",
+          "https://edayreminder-app.herokuapp.com/reminders",
           data
         );
         //console.log(newReminder);

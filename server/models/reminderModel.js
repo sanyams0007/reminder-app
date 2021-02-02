@@ -73,11 +73,11 @@ reminderSchema.statics.sendNotifications = function (callback) {
   function sendNotifications(reminders) {
     reminders.forEach(function (reminder) {
       if (reminder.email) {
-        //console.log("Sending email @ ", reminder.userEmail);
+        console.log("Sending email @ ", reminder.userEmail);
         sendEmail(reminder);
       }
       if (reminder.phone) {
-        //console.log("Sending Message @ ", reminder.userPhone);
+        console.log("Sending Message @ ", reminder.userPhone);
         sendMessage(reminder);
       }
     });

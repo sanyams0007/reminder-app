@@ -24,7 +24,7 @@ const Feedback = () => {
     e.preventDefault();
     try {
       const newFeedback = await axios.post(
-        "http://localhost:5000/feedback",
+        "https://edayreminder-app.herokuapp.com/feedback",
         feedback
       );
       //console.log(newFeedback);
@@ -36,7 +36,9 @@ const Feedback = () => {
   useEffect(() => {
     const getFeedback = async () => {
       try {
-        let oldFeedback = await axios.get("http://localhost:5000/feedback");
+        let oldFeedback = await axios.get(
+          "https://edayreminder-app.herokuapp.com/feedback"
+        );
         console.log(oldFeedback);
         if (oldFeedback.data === null) {
           setFeedback({

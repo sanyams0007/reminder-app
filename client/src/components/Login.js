@@ -61,7 +61,7 @@ const Login = (props) => {
     e.preventDefault();
     try {
       const registeredUser = await axios.post(
-        "http://localhost:5000/users/register",
+        "https://edayreminder-app.herokuapp.com/users/register",
         registerData
       );
 
@@ -83,7 +83,7 @@ const Login = (props) => {
     e.preventDefault();
     try {
       const loggedUser = await axios.post(
-        "http://localhost:5000/users/login",
+        "https://edayreminder-app.herokuapp.com/users/login",
         loginData
       );
       setAuthToken(loggedUser.data.token);
@@ -92,7 +92,9 @@ const Login = (props) => {
         payload: loggedUser.data,
       });
 
-      const reminders = await axios.get("http://localhost:5000/reminders");
+      const reminders = await axios.get(
+        "https://edayreminder-app.herokuapp.com/reminders"
+      );
       dispatch({
         type: SET_REMS,
         payload: reminders.data,

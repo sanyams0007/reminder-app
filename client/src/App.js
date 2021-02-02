@@ -37,20 +37,24 @@ function App() {
 
       //check if token is valid through API and return true or false.
       const tokenRes = await axios.post(
-        "http://localhost:5000/users/tokenIsValid"
+        "https://edayreminder-app.herokuapp.com/tokenIsValid"
       );
 
       //if token is valid then get user data from private route
       // and send response data from API to state using dispatch
       if (tokenRes.data) {
         try {
-          const user = await axios.get("http://localhost:5000/users");
+          const user = await axios.get(
+            "https://edayreminder-app.herokuapp.com/users"
+          );
           dispatch({
             type: LOAD_USER,
             payload: user.data,
           });
 
-          const reminders = await axios.get("http://localhost:5000/reminders");
+          const reminders = await axios.get(
+            "https://edayreminder-app.herokuapp.com/reminders"
+          );
           dispatch({
             type: SET_REMS,
             payload: reminders.data,

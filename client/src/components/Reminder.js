@@ -12,14 +12,11 @@ import { useHistory } from "react-router-dom";
 const Reminder = (props) => {
   const { dispatch } = useContext(UserAuthContext);
   const history = useHistory();
-
-  //const location = useLocation();
-  //const baseUrl = location.pathname;
   const deleteReminder = async (_id) => {
     try {
       /* const url = `${baseUrl}/${_id}` */
       const deletedReminder = await axios.delete(
-        `http://localhost:5000/reminders/${_id}`
+        `https://edayreminder-app.herokuapp.com/reminders/${_id}`
       );
       console.log(deletedReminder.data._id);
       dispatch({

@@ -75,7 +75,7 @@ module.exports = {
       userPhone,
     } = req.body;
     let recDate = new Date(remindAt);
-    let cmpDate = new Date(Date.now() + 1 * 1 * 1 * 30 * 1000);
+    let cmpDate = new Date(Date.now() + 30 * 1000);
     try {
       // validating id of object
       if (!mongoose.Types.ObjectId.isValid(_id))
