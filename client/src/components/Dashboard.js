@@ -20,7 +20,7 @@ const Dashboard = () => {
         <div className="greet">Welcome</div>
         <div onClick={() => history.push("/create")} className="box">
           <div className="content">
-            <h2>want to create a new reminder</h2>
+            <h2>Want to create a new reminder</h2>
           </div>
         </div>
         <div onClick={() => history.push("/reminders")} className="box">

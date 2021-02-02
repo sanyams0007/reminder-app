@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import UserAuthContext from "../context/UserAuthContext";
 import { LOGOUT_USER } from "../context/reducer";
 
-const Header = (props) => {
+const Header = () => {
   const { state, dispatch } = useContext(UserAuthContext);
   const [open, setOpen] = useState("open");
 
@@ -55,9 +55,6 @@ const Header = (props) => {
         <Link onClick={hamburger} className="navlink" to="/about">
           About
         </Link>
-        {/* <Link onClick={hamburger} className="navlink" to="/contact">
-          Contact us
-        </Link> */}
       </nav>
     </div>
   );

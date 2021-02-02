@@ -1,13 +1,11 @@
 import React, { useEffect, useContext } from "react";
 import axios from "axios";
 import { BrowserRouter, Switch, Route, Redirect } from "react-router-dom";
-//import "./App.css";
 import ProtectedRoute from "./ProtectedRoute";
 import Login from "./components/Login";
 import Home from "./components/Home";
 import Header from "./components/Header";
 import About from "./components/About";
-//import Contact from "./components/Contact";
 import Footer from "./components/Footer";
 import setAuthToken from "./context/setAuthToken";
 import UserAuthContext from "./context/UserAuthContext";

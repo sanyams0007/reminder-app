@@ -41,25 +41,9 @@ const NewReminder = () => {
     userPhone,
   });
 
-  //console.log(time, date);
-  //let currentReminder = null;
-  //console.log(state.currentId)
-  /* const currentReminder = state.currentId ? state.reminders.find((p) => p._id === state.currentId) : null; */
-  //console.log(moment(currentReminder.remindAt).format("L"));
-  //console.log(moment(currentReminder.remindAt).format("LT"));
   if (state.currentId) {
-    //console.log(currentReminder)
-    //currentReminder = state.reminders.find((p) => p._id === state.currentId);
-    //const newd = new Date(currentReminder.remindAt)
-    //setTime(moment(currentReminder.remindAt).format("LT"));
-    //setDate(moment(currentReminder.remindAt).format("L"));
-    //setData(currentReminder);
     console.log(">>> time ", moment(currentReminder.remindAt).format("LT"));
     console.log(">>> date ", moment(currentReminder.remindAt).format("L"));
-    /* console.log(new Date(currentReminder.remindAt).getHours());
-        console.log(new Date(currentReminder.remindAt).getMinutes()); */
-    //setTime("time", newd.getHours() + ":" + newd.getMinutes());
-    //console.log('date', newd.toLocaleDateString());
   }
 
   useEffect(() => {
@@ -84,12 +68,6 @@ const NewReminder = () => {
             "remindAt": new Date(`${date} ${time}`).toISOString(),
         })); */
   }, [currentReminder]);
-
-  /* console.log(dateTime)
-    console.log(new Date(`${dateTime.date} ${dateTime.time}`));
-    console.log(new Date(`${dateTime.date} ${dateTime.time}`).toISOString());
-
- */
 
   const onChange = (e) => {
     setData((prevData) => ({
