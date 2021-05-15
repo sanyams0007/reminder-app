@@ -1,8 +1,6 @@
 const mongoose = require("mongoose");
 const nodemailer = require("nodemailer");
 const fast2sms = require("fast-two-sms");
-/* default: () => Date.now() + 1 * 24 * 60 * 60 * 1000, */
-/* default: () => Date.now() + 7*24*60*60*1000 */
 const reminderSchema = mongoose.Schema({
   title: {
     type: String,
@@ -41,11 +39,6 @@ const reminderSchema = mongoose.Schema({
 });
 
 reminderSchema.methods.isItTheTime = function (date) {
-  /* console.log("withinStart @ ", date);
-  console.log("remind @ ", this.remindAt);
-  console.log("withinEnd @ ", new Date(date.getTime() + 30000));
-  console.log(this.remindAt >= date);
-  console.log(this.remindAt < date.getTime() + 60000); */
   return (
     this.remindAt >= date && this.remindAt < new Date(date.getTime() + 50000)
   );
@@ -61,7 +54,6 @@ reminderSchema.statics.sendNotifications = function (callback) {
       return reminder.isItTheTime(currentDateTime);
     });
     if (reminders.length > 0) {
-      console.log("length ", reminders.length);
       sendNotifications(reminders);
     }
   });
@@ -88,17 +80,29 @@ reminderSchema.statics.sendNotifications = function (callback) {
 
   async function sendEmail(reminder) {
     try {
-      let transporter = nodemailer.createTransport({
+      /* let transporter = nodemailer.createTransport({
         service: "Gmail",
         auth: {
           user: process.env.GMAIL_USER,
           pass: process.env.GMAIL_PASS,
         },
+      }); */
+      var transporter = nodemailer.createTransport({
+        host: "smtp-mail.outlook.com", // hostname
+        secureConnection: false, // TLS requires secureConnection to be false
+        port: 587, // port for secure SMTP
+        tls: {
+          ciphers: "SSLv3",
+        },
+        auth: {
+          user: process.env.OUTLOOK_USER,
+          pass: process.env.OUTLOOK_PASS,
+        },
       });
       let info = await transporter.sendMail({
-        from: '"EDAY Reminders 👻" <edayreminders@gmail.com>', // sender address
+        from: '"EDAY Reminders 👻" <edayreminders@outlook.com>', // sender address
         to: reminder.userEmail, // list of receivers
-        subject: "it's a Reminder", // Subject line
+        subject: "it's a Reminder!", // Subject line
         text: reminder.message, // plain text body
         html: `
             <p>Hello there you have a reminder for today,did you forgot it ?</p>
@@ -106,7 +110,6 @@ reminderSchema.statics.sendNotifications = function (callback) {
             <p>${reminder.message}</p>
       `, // html body
       });
-      //console.log(reminder.email, "  ", reminder.userEmail);
     } catch (error) {
       console.log(error);
     }
@@ -120,7 +123,6 @@ reminderSchema.statics.sendNotifications = function (callback) {
     };
     try {
       const response = await fast2sms.sendMessage(options);
-      //console.log(response);
     } catch (error) {
       console.log(error);
     }
