@@ -23,10 +23,6 @@ const UserAccount = () => {
             <span>{state.user.phone}</span>
           </div>
           <p>Total Reminder: {state.reminders.length}</p>
-          {/* <div className="account_btns">
-            <button className="user_btn update_btn">Update Info</button>
-            <button className="user_btn delete_btn">Delete Account</button>
-          </div> */}
         </div>
       </div>
     </div>

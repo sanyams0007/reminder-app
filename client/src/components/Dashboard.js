@@ -7,7 +7,6 @@ import "./Dashboard.css";
 const Dashboard = () => {
   const { dispatch } = useContext(UserAuthContext);
   const history = useHistory();
-  //const [currentId, setCurrentId] = useState(null)
   useEffect(() => {
     dispatch({
       type: UNSET_ID,
@@ -43,5 +42,4 @@ const Dashboard = () => {
   );
 };
 
-/* export default Dashboard; */
 export default withRouter(Dashboard);

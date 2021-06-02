@@ -37,7 +37,6 @@
 .right {
   padding: 35px 50px;
   height: 100%;
-  /* background-color: beige; */
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -46,7 +45,6 @@
 
 .right form {
   text-align: center;
-  /* border-radius: 10px; */
   width: 60%;
   height: 70%;
   display: flex;
@@ -74,7 +72,6 @@
 }
 
 .create_error > button {
-  /*  width: 20px; */
   height: 20px;
   border-radius: 50%;
   background-color: #e07c7c;
@@ -83,7 +80,6 @@
 }
 
 .options {
-  /* background-color: aqua; */
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -91,10 +87,7 @@
 }
 
 .input {
-  /* margin-top: 5px; */
-  /* margin-left: 50px; */
   width: 40%;
-  /* background-color: lightpink; */
   display: flex;
   justify-content: space-evenly;
 }
@@ -105,7 +98,6 @@
   padding: 7px 0 7px 10px;
   border: none;
   font-family: Montserrat;
-  /* border-radius: 25px; */
 }
 
 .time_control {
@@ -186,7 +178,6 @@
   padding: 10px;
   align-self: center;
   border: none;
-  /* border-radius: 50px; */
   background-color: #2cb978;
   color: white;
   cursor: pointer;
@@ -226,7 +217,6 @@
   .right {
     padding: 0;
     height: 106%;
-    /* align-items: center; */
     justify-content: center;
   }
 
@@ -239,12 +229,6 @@
     top: -20px;
     padding-top: 30px;
     padding-bottom: 20px;
-  }
-
-  .right form > input,
-  .right form > button,
-  .right form .options {
-    /* margin: 6px; */
   }
 
   .left {

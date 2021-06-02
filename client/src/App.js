@@ -76,13 +76,11 @@ function App() {
       <BrowserRouter>
         <Header />
         <Switch>
-          {/* <Route exact path="/" component={Home} /> */}
           <Route path="/" exact>
             {state.isAuthenticated ? <Redirect to="/dashboard" /> : <Home />}
           </Route>
           <Route path="/login" component={Login} />
           <Route path="/about" component={About} />
-          {/* <Route path="/contact" component={Contact} /> */}
           <ProtectedRoute
             isAuthenticated={state.isAuthenticated}
             path="/dashboard"
@@ -98,6 +96,7 @@ function App() {
             path="/create"
             component={NewReminder}
           />
+
           <ProtectedRoute
             isAuthenticated={state.isAuthenticated}
             path="/feedback"

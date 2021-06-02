@@ -1,6 +1,5 @@
 .about_container {
   padding: 20px 100px 0;
-  /*  background-color: lightblue; */
   height: 100%;
 }
 
@@ -9,13 +8,11 @@
   justify-content: center;
   font-family: "Montserrat";
   display: flex;
-  /* border: 1px solid; */
   height: 80vh;
 }
 
 .about_content {
   width: 45%;
-  /* border: 1px solid; */
 }
 
 .about_img {

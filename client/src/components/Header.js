@@ -8,8 +8,6 @@ const Header = () => {
   const { state, dispatch } = useContext(UserAuthContext);
   const [open, setOpen] = useState("open");
 
-  //const history = useHistory();
-
   const hamburger = () => {
     if (open === "") setOpen("open");
     else setOpen("");
@@ -19,7 +17,6 @@ const Header = () => {
     dispatch({
       type: LOGOUT_USER,
     });
-    /* history.push('/'); */
     hamburger();
   };
 

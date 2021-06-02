@@ -1,8 +1,5 @@
 .reminders {
   position: relative;
-  /* height: 100%; */
-  /*  background-color:#e8ffe8 ; */
-  /*  margin: 0 auto; */
   padding: 20px 100px 60px;
 }
 
@@ -11,10 +8,6 @@
   grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
   grid-gap: 1rem;
   grid-auto-rows: auto;
-  /* grid-auto-flow: dense; */
-  /* padding: 10px 0; */
-
-  /* background-color: lightcoral; */
 }
 
 .modal {

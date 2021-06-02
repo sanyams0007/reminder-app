@@ -1,5 +1,4 @@
 import React, { useContext } from "react";
-//import { useLocation } from 'react-router-dom';
 import moment from "moment";
 import DeleteIcon from "@material-ui/icons/Delete";
 import EditIcon from "@material-ui/icons/Edit";
@@ -18,7 +17,6 @@ const Reminder = (props) => {
       const deletedReminder = await axios.delete(
         `https://edayreminder-app.herokuapp.com/reminders/${_id}`
       );
-      console.log(deletedReminder.data._id);
       dispatch({
         type: DELETE_REMINDER,
         payload: deletedReminder.data._id,

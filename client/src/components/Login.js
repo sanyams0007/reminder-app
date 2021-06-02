@@ -1,6 +1,5 @@
 import React, { useState, useContext, useEffect } from "react";
 import axios from "axios";
-//import { useHistory } from 'react-router-dom'
 import AuthUserContext from "../context/UserAuthContext";
 import "./Login.css";
 import {
@@ -16,7 +15,6 @@ import setAuthToken from "../context/setAuthToken";
 const Login = (props) => {
   const { state, dispatch } = useContext(AuthUserContext);
   const [active, setActive] = useState("");
-  //const history = useHistory();
   const [registerData, setRegisterData] = useState({
     name: "",
     email: "",

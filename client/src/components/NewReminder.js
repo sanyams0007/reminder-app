@@ -16,7 +16,6 @@ const NewReminder = () => {
     : null;
   const userEmail = state.user.email;
   const userPhone = state.user.phone;
-  console.log(userPhone);
   let d = new Date();
 
   const [time, setTime] = useState(
@@ -63,10 +62,6 @@ const NewReminder = () => {
         userPhone,
       });
     }
-    /* setData(prevData => ({
-            ...prevData,
-            "remindAt": new Date(`${date} ${time}`).toISOString(),
-        })); */
   }, [currentReminder]);
 
   const onChange = (e) => {
@@ -96,9 +91,13 @@ const NewReminder = () => {
     e.preventDefault();
     try {
       if (state.currentId) {
-        //console.log(state.currentId);
-        const updatedReminder = await axios.patch(
+        /* const updatedReminder = await axios.patch(
           `https://edayreminder-app.herokuapp.com/reminders/${state.currentId}`,
+          data
+        ); */
+        console.log("updating");
+        const updatedReminder = await axios.patch(
+          `http://localhost:5000/reminders/${state.currentId}`,
           data
         );
         console.log(updatedReminder.data);
@@ -107,6 +106,7 @@ const NewReminder = () => {
           payload: updatedReminder.data,
         });
       } else {
+        console.log("creating");
         const newReminder = await axios.post(
           "https://edayreminder-app.herokuapp.com/reminders",
           data
@@ -131,7 +131,7 @@ const NewReminder = () => {
         userPhone,
       });
     } catch (error) {
-      console.log(error.response);
+      console.log(error);
       error.response.data.msg && setServerError(error.response.data.msg);
       console.log(serverError);
     }
@@ -179,14 +179,6 @@ const NewReminder = () => {
           <TimePicker
             onChange={(value) => {
               handleTime(value);
-              /*  setData(prevData => ({
-                                 ...prevData,
-                                 "remindAt": new Date(`${date} ${value}`).toISOString(),
-                             })) */
-              /*  console.log(new Date(`${date} ${time}`).toISOString())
-                             console.log(value)
-                             console.log("remind At >>>", moment(data.remindAt).format('lll'))
-                             console.log("remind At >>>", moment(new Date(`${date} ${time}`).toISOString()).format('lll')) */
             }}
             value={time}
             hourPlaceholder="hh"

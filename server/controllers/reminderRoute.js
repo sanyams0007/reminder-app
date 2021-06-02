@@ -16,15 +16,8 @@ module.exports = {
   },
 
   createReminder: async (req, res) => {
-    const {
-      title,
-      message,
-      remindAt,
-      phone,
-      email,
-      userEmail,
-      userPhone,
-    } = req.body;
+    const { title, message, remindAt, phone, email, userEmail, userPhone } =
+      req.body;
     let recDate = new Date(remindAt);
     let cmpDate = new Date(Date.now() + 1 * 1 * 1 * 30 * 1000);
     try {
@@ -64,16 +57,10 @@ module.exports = {
 
   updateReminder: async (req, res) => {
     const { _id } = req.params;
-    //console.log(req.body);
-    const {
-      title,
-      message,
-      remindAt,
-      phone,
-      email,
-      userEmail,
-      userPhone,
-    } = req.body;
+    console.log(req.body);
+    console.log(req.params);
+    const { title, message, remindAt, phone, email, userEmail, userPhone } =
+      req.body;
     let recDate = new Date(remindAt);
     let cmpDate = new Date(Date.now() + 30 * 1000);
     try {

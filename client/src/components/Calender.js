@@ -22,11 +22,9 @@ const days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 
 const Calender = (props) => {
   const d = new Date();
-  //new Date(`${dateTime.date} ${dateTime.time}`)
+
   const [selectedDate, setSelectedDate] = useState(new Date(`${props.value}`));
-  //setSelectedDate(new Date(`${props.value}`));
-  console.log("from calender ", props.value);
-  console.log("selected ", selectedDate);
+
   const [dates, setDates] = useState([]);
   const [calendar, setCalendar] = useState({
     month: selectedDate.getMonth(),
@@ -38,13 +36,8 @@ const Calender = (props) => {
       month: calendar.month,
       year: calendar.year,
     };
-    const {
-      dates,
-      nextMonth,
-      nextYear,
-      previousMonth,
-      previousYear,
-    } = datesGenerator(body);
+    const { dates, nextMonth, nextYear, previousMonth, previousYear } =
+      datesGenerator(body);
     setDates([...dates]);
     setCalendar({
       ...calendar,
@@ -53,20 +46,12 @@ const Calender = (props) => {
       previousMonth,
       previousYear,
     });
-    //handleDate(props.value);
-    //setSelectedDate(new Date(`${props.value}`))
-    //props.updateValue(selectedDate.toLocaleDateString());
   }, [selectedDate]);
 
   const onClickNext = () => {
     const body = { month: calendar.nextMonth, year: calendar.nextYear };
-    const {
-      dates,
-      nextMonth,
-      nextYear,
-      previousMonth,
-      previousYear,
-    } = datesGenerator(body);
+    const { dates, nextMonth, nextYear, previousMonth, previousYear } =
+      datesGenerator(body);
 
     setDates([...dates]);
     setCalendar({
@@ -82,13 +67,8 @@ const Calender = (props) => {
 
   const onClickPrevious = () => {
     const body = { month: calendar.previousMonth, year: calendar.previousYear };
-    const {
-      dates,
-      nextMonth,
-      nextYear,
-      previousMonth,
-      previousYear,
-    } = datesGenerator(body);
+    const { dates, nextMonth, nextYear, previousMonth, previousYear } =
+      datesGenerator(body);
 
     setDates([...dates]);
     setCalendar({
@@ -106,17 +86,13 @@ const Calender = (props) => {
     props.updateValue(
       new Date(date.year, date.month, date.date).toLocaleDateString()
     );
-    //console.log(props.value);
     setSelectedDate(new Date(date.year, date.month, date.date));
-    //props.updateValue(new Date(date.year, date.month, date.date).toLocaleDateString());
-    //props.updateValue(selectedDate.toLocaleDateString());
   };
 
   return (
     <div className="calender_container">
       <p>when would you like to get reminded?</p>
       <div className="calender_header">
-        {/* new Date(each.year, each.month, each.date + 1).getTime() < d.getTime() */}
         {calendar.year < d.getFullYear() ? (
           <ChevronLeftIcon
             className="btn_month"

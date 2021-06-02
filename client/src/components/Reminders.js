@@ -1,6 +1,4 @@
 import React, { useContext } from "react";
-//import axios from 'axios';
-//import { SET_REMS, UNSET_REMS } from '../context/reducer';
 import { withRouter } from "react-router-dom";
 import "./Reminders.css";
 import UserAuthContext from "../context/UserAuthContext";

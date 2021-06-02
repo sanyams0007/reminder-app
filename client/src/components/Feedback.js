@@ -1,11 +1,9 @@
 import React, { useEffect, useState } from "react";
 import "./Feedback.css";
 import { withRouter } from "react-router-dom";
-//import UserAuthContext from "../context/UserAuthContext";
 import axios from "axios";
 
 const Feedback = () => {
-  //const { state, dispatch } = useContext(UserAuthContext);
   const [old, setOld] = useState(false);
   const [feedback, setFeedback] = useState({
     name: "",
@@ -39,16 +37,14 @@ const Feedback = () => {
         let oldFeedback = await axios.get(
           "https://edayreminder-app.herokuapp.com/feedback"
         );
-        console.log(oldFeedback);
+        //console.log(oldFeedback);
         if (oldFeedback.data === null) {
           setFeedback({
             name: "",
             vote: "",
             message: "",
           });
-          //setOld(false);
         } else {
-          //setFeedback(oldFeedback.data);
           setOld(true);
         }
       } catch (error) {

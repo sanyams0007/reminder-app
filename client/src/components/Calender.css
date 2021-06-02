@@ -1,9 +1,5 @@
 .calender_container {
   height: 100%;
-  /* width: 300px;
-    border: 1px solid black;
-    margin: 0 auto;
-    box-shadow: 10px 10px 0px black; */
   font-family: "Montserrat";
   width: 85%;
   margin: 10px auto;
@@ -39,13 +35,10 @@
   padding: 10px 0;
   font-weight: 600;
   color: black;
-  /* font-family: 'montserrat'; */
-  /* background-color: aliceblue; */
 }
 
 .date {
   padding: 5px;
-  /* background-color: brown; */
   text-align: center;
   color: #fdfdfd;
   font-weight: 600;
