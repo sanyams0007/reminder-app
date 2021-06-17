@@ -91,16 +91,15 @@ const NewReminder = () => {
     e.preventDefault();
     try {
       if (state.currentId) {
-        /* const updatedReminder = await axios.patch(
+        const updatedReminder = await axios.patch(
           `https://edayreminder-app.herokuapp.com/reminders/${state.currentId}`,
           data
-        ); */
-        console.log("updating");
-        const updatedReminder = await axios.patch(
+        );
+        /* const updatedReminder = await axios.patch(
           `http://localhost:5000/reminders/${state.currentId}`,
           data
-        );
-        console.log(updatedReminder.data);
+        ); */
+        //console.log(updatedReminder.data);
         dispatch({
           type: UPDATE_REMINDER,
           payload: updatedReminder.data,
@@ -135,17 +134,11 @@ const NewReminder = () => {
       error.response.data.msg && setServerError(error.response.data.msg);
       console.log(serverError);
     }
-    /* catch (error) {
-             //error.response.data.msg && setServerError(error.response.data.msg);
-             console.log(error.response.data.msg);
-         }
-  */
   };
 
   return (
     <div className="new_reminder">
       <div className="main_heading">
-        {" "}
         <h2>{state.currentId ? "UPDATE REMINDER" : "NEW REMINDER"}</h2>
       </div>
       <div className="left">

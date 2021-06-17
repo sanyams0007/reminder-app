@@ -38,7 +38,7 @@ const Feedback = () => {
           "https://edayreminder-app.herokuapp.com/feedback"
         );
         //console.log(oldFeedback);
-        if (oldFeedback.data === null) {
+        if (oldFeedback?.data === null) {
           setFeedback({
             name: "",
             vote: "",

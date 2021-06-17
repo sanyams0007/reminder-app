@@ -1,6 +1,7 @@
 const mongoose = require("mongoose");
 const nodemailer = require("nodemailer");
 const fast2sms = require("fast-two-sms");
+
 const reminderSchema = mongoose.Schema({
   title: {
     type: String,
@@ -87,7 +88,8 @@ reminderSchema.statics.sendNotifications = function (callback) {
           pass: process.env.GMAIL_PASS,
         },
       }); */
-      var transporter = nodemailer.createTransport({
+
+      const transporter = nodemailer.createTransport({
         host: "smtp-mail.outlook.com", // hostname
         secureConnection: false, // TLS requires secureConnection to be false
         port: 587, // port for secure SMTP
@@ -99,10 +101,12 @@ reminderSchema.statics.sendNotifications = function (callback) {
           pass: process.env.OUTLOOK_PASS,
         },
       });
+
+      
       let info = await transporter.sendMail({
         from: '"EDAY Reminders 👻" <edayreminders@outlook.com>', // sender address
         to: reminder.userEmail, // list of receivers
-        subject: "it's a Reminder!", // Subject line
+        subject: "It's a Reminder!", // Subject line
         text: reminder.message, // plain text body
         html: `
             <p>Hello there you have a reminder for today,did you forgot it ?</p>

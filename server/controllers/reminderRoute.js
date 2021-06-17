@@ -1,4 +1,4 @@
-const userModel = require("../models/userModel");
+
 const reminderModel = require("../models/reminderModel");
 const mongoose = require("mongoose");
 
@@ -57,8 +57,6 @@ module.exports = {
 
   updateReminder: async (req, res) => {
     const { _id } = req.params;
-    console.log(req.body);
-    console.log(req.params);
     const { title, message, remindAt, phone, email, userEmail, userPhone } =
       req.body;
     let recDate = new Date(remindAt);

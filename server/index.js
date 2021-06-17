@@ -30,7 +30,7 @@ app.use(cors());
 ); */
 
 /* API Routes */
-app.get("/", (req, res) => res.send("Hello to Reminders API v2"));
+app.get("/", (req, res) => res.send("Hello to Reminders API v2.1"));
 app.use("/users", UserRouter);
 app.use("/reminders", ReminderRouter);
 app.use("/feedback", FeedbackRouter);

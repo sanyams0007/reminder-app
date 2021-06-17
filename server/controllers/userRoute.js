@@ -22,7 +22,7 @@ module.exports = {
 
       /* create a token */
       const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, {
-        expiresIn: 360000,
+        expiresIn: 7 * 24 * 60 * 60 * 1000, // expires after a week
       });
 
       /* sends back created user data in response */
