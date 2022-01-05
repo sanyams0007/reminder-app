@@ -13,7 +13,6 @@
   text-align: center;
   border: 1px solid;
   width: 50%;
-  font-family: "Montserrat";
   color: #0e153a;
 }
 
@@ -56,7 +55,6 @@
 }
 
 .user_btn {
-  font-family: "Montserrat";
   border: none;
   font-size: 17px;
   padding: 10px 20px;

@@ -5,7 +5,10 @@ import UserAuthContext from "../context/UserAuthContext";
 import { LOGOUT_USER } from "../context/reducer";
 
 const Header = () => {
-  const { state, dispatch } = useContext(UserAuthContext);
+  const {
+    state: { isAuthenticated },
+    dispatch,
+  } = useContext(UserAuthContext);
   const [open, setOpen] = useState("open");
 
   const hamburger = () => {
@@ -31,7 +34,7 @@ const Header = () => {
         <div className="line"></div>
       </div>
       <nav className={`navbar ${open}`}>
-        {state.isAuthenticated ? (
+        {isAuthenticated ? (
           <Link onClick={hamburger} className="navlink" to="/dashboard">
             Dashboard
           </Link>
@@ -40,7 +43,7 @@ const Header = () => {
             Home
           </Link>
         )}
-        {state.isAuthenticated ? (
+        {isAuthenticated ? (
           <Link onClick={logout} className="navlink" to="/">
             Logout
           </Link>

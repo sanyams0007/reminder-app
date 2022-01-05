@@ -13,6 +13,7 @@
     "moment": "^2.29.1",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
+    "react-phone-input-2": "^2.14.0",
     "react-router-dom": "^5.2.0",
     "react-scripts": "4.0.1",
     "react-time-picker": "^4.1.2",
@@ -41,5 +42,6 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  }
+  },
+  "proxy": "https://edayreminder-app.herokuapp.com"
 }

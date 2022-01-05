@@ -54,7 +54,6 @@
 
 .qa textarea {
   margin-top: 10px;
-  font-family: "Montserrat";
 }
 
 .radio_option {
@@ -77,7 +76,6 @@
   padding-left: 0;
   background-color: #17b978;
   border: none;
-  font-family: "Montserrat";
 }
 
 @media screen and (max-width: 768px) {

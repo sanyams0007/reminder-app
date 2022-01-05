@@ -25,7 +25,7 @@ const reducer = (state, action) => {
     }
 
     case LOGIN_USER: {
-      localStorage.setItem("token", action.payload.token);
+      localStorage.setItem("token", JSON.stringify(action.payload.token));
       return {
         ...state,
         user: action.payload.user,

@@ -18,7 +18,7 @@ const UserAccount = () => {
             <span>{state.user.email}</span>
           </div>
           <div className="icon_container">
-            <PhoneIcon fontSize="large" color=""></PhoneIcon>
+            <PhoneIcon fontSize="large"></PhoneIcon>
             <label>Mobile:</label>
             <span>{state.user.phone}</span>
           </div>

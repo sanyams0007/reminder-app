@@ -20,7 +20,7 @@ const Reminders = () => {
         "NOTHING"
       ) : (
         <>
-          <h2>Manage Your Reminders..</h2>
+          <h2>Manage your reminders..</h2>
           <div className="reminders_container">
             {state.reminders?.map((reminder) => {
               let random_color =

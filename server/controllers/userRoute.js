@@ -21,11 +21,11 @@ module.exports = {
       if (!isMatch) return res.status(400).json({ msg: "Invalid credentials" });
 
       /* create a token */
-      const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, {
-        expiresIn: 7 * 24 * 60 * 60 * 1000, // expires after a week
+      const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET_KEY, {
+        expiresIn: "7d", // expires after a week
       });
 
-      /* sends back created user data in response */
+      /* sends back created user data */
       res.json({
         token,
         user: {
@@ -61,8 +61,7 @@ module.exports = {
       /* checks if password doesn't contain min 1 upper, lower, special char and number  */
       if (strongRegx.test(password))
         return res.status(400).json({
-          msg:
-            "Password must contain at least 1 uppercase letter, 1 lowercase letter, 1 number and 1 special character",
+          msg: "Password must contain at least 1 uppercase letter, 1 lowercase letter, 1 number and 1 special character",
         });
 
       //if user already exists then
@@ -84,7 +83,7 @@ module.exports = {
         password: passwordHash,
       });
 
-      const savedUser = await user.save();
+      await user.save();
 
       /* create a token 
          const token = jwt.sign({ id: savedUser._id }, process.env.JWT_SECRET, {
@@ -130,15 +129,15 @@ module.exports = {
   tokenIsValid: async (req, res) => {
     try {
       const token = req.header("x-auth-token");
-      if (!token) return res.json(false);
+      if (!token) return res.json({ success: false });
 
-      const verified = jwt.verify(token, process.env.JWT_SECRET);
-      if (!verified) return res.json(false);
+      const verified = jwt.verify(token, process.env.JWT_SECRET_KEY);
+      if (!verified) return res.json({ success: false });
 
       const user = await userModel.findById(verified.id);
-      if (!user) return res.json(false);
+      if (!user) return res.json({ success: false });
 
-      return res.json(true);
+      res.json({ success: true });
     } catch (err) {
       res.status(500).json({ error: err.message });
     }

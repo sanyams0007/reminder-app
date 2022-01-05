@@ -31,22 +31,28 @@ const Calender = (props) => {
     year: selectedDate.getFullYear(),
   });
 
-  useEffect(() => {
-    const body = {
-      month: calendar.month,
-      year: calendar.year,
-    };
-    const { dates, nextMonth, nextYear, previousMonth, previousYear } =
-      datesGenerator(body);
-    setDates([...dates]);
-    setCalendar({
-      ...calendar,
-      nextMonth,
-      nextYear,
-      previousMonth,
-      previousYear,
-    });
-  }, [selectedDate]);
+  useEffect(
+    () => {
+      const body = {
+        month: calendar.month,
+        year: calendar.year,
+      };
+
+      const { dates, nextMonth, nextYear, previousMonth, previousYear } =
+        datesGenerator(body);
+      setDates([...dates]);
+      setCalendar({
+        ...calendar,
+        nextMonth,
+        nextYear,
+        previousMonth,
+        previousYear,
+      });
+    },
+    [
+      /* selectedDate */
+    ]
+  );
 
   const onClickNext = () => {
     const body = { month: calendar.nextMonth, year: calendar.nextYear };

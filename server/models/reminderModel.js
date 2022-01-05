@@ -1,6 +1,11 @@
 const mongoose = require("mongoose");
 const nodemailer = require("nodemailer");
 const fast2sms = require("fast-two-sms");
+const twilio = require("twilio");
+
+const accountSid = process.env.ACCOUNT_SID; // Your Account SID from www.twilio.com/console
+const authToken = process.env.AUTH_TOKEN; // Your Auth Token from www.twilio.com/console
+const client = new twilio(accountSid, authToken);
 
 const reminderSchema = mongoose.Schema({
   title: {
@@ -59,7 +64,7 @@ reminderSchema.statics.sendNotifications = function (callback) {
     }
   });
 
-  /* Sends reminders to all possible candidates 
+  /* Sends reminders to all possible users 
   @param {array} of reminders in current minute
   */
 
@@ -71,7 +76,8 @@ reminderSchema.statics.sendNotifications = function (callback) {
       }
       if (reminder.phone) {
         console.log("Sending Message @ ", reminder.userPhone);
-        sendMessage(reminder);
+        //sendMessage(reminder);
+        sendWhatsApp(reminder);
       }
     });
     if (callback) {
@@ -102,7 +108,6 @@ reminderSchema.statics.sendNotifications = function (callback) {
         },
       });
 
-      
       let info = await transporter.sendMail({
         from: '"EDAY Reminders 👻" <edayreminders@outlook.com>', // sender address
         to: reminder.userEmail, // list of receivers
@@ -127,6 +132,21 @@ reminderSchema.statics.sendNotifications = function (callback) {
     };
     try {
       const response = await fast2sms.sendMessage(options);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  async function sendWhatsApp(reminder) {
+    try {
+      client.messages
+        .create({
+          body: reminder.message,
+          from: "whatsapp:+14155238886",
+          to: `whatsapp:+91${reminder.userPhone}`,
+        })
+        .then((message) => console.log("Sended @WhatsApp", message))
+        .done();
     } catch (error) {
       console.log(error);
     }

@@ -12,6 +12,7 @@ const UserAuthProvider = (props) => {
   };
 
   const [state, dispatch] = useReducer(reducer, initialState);
+  //console.log(state);
 
   return (
     <UserAuthContext.Provider value={{ state, dispatch }}>

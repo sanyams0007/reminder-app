@@ -9,8 +9,10 @@ import { UPDATE_REMINDER, ADD_REMINDER, UNSET_ID } from "../context/reducer";
 import moment from "moment";
 
 const NewReminder = () => {
+  const [error, setError] = useState(null);
+
   const { state, dispatch } = useContext(UserAuthContext);
-  const [serverError, setServerError] = useState(null);
+
   const currentReminder = state.currentId
     ? state.reminders.find((p) => p._id === state.currentId)
     : null;
@@ -40,16 +42,8 @@ const NewReminder = () => {
     userPhone,
   });
 
-  if (state.currentId) {
-    console.log(">>> time ", moment(currentReminder.remindAt).format("LT"));
-    console.log(">>> date ", moment(currentReminder.remindAt).format("L"));
-  }
-
   useEffect(() => {
     if (currentReminder !== null) {
-      //setTime(moment(currentReminder.remindAt).format("HH:mm"));
-      //setDate(moment(currentReminder.remindAt).format("L"));
-      //console.log(date)
       setData(currentReminder);
     } else {
       setData({
@@ -92,30 +86,22 @@ const NewReminder = () => {
     try {
       if (state.currentId) {
         const updatedReminder = await axios.patch(
-          `https://edayreminder-app.herokuapp.com/reminders/${state.currentId}`,
+          `reminders/${state.currentId}`,
           data
         );
-        /* const updatedReminder = await axios.patch(
-          `http://localhost:5000/reminders/${state.currentId}`,
-          data
-        ); */
         //console.log(updatedReminder.data);
         dispatch({
           type: UPDATE_REMINDER,
           payload: updatedReminder.data,
         });
       } else {
-        console.log("creating");
-        const newReminder = await axios.post(
-          "https://edayreminder-app.herokuapp.com/reminders",
-          data
-        );
+        const newReminder = await axios.post("reminders", data);
         //console.log(newReminder);
         dispatch({
           type: ADD_REMINDER,
           payload: newReminder.data,
         });
-        setServerError(null);
+        setError(null);
       }
       dispatch({
         type: UNSET_ID,
@@ -130,9 +116,11 @@ const NewReminder = () => {
         userPhone,
       });
     } catch (error) {
+      /*  error.response.data.msg &&  */
+      setError(error.response.data.msg);
+      setTimeout(() => setError(""), 5000);
+
       console.log(error);
-      error.response.data.msg && setServerError(error.response.data.msg);
-      console.log(serverError);
     }
   };
 
@@ -145,13 +133,8 @@ const NewReminder = () => {
         <Calender value={date} updateValue={handleDate} />
       </div>
       <div className="right">
+        {error && <p className="error">{error}</p>}
         <form onSubmit={onSubmit}>
-          {serverError && (
-            <div className="create_error">
-              <small>{serverError}</small>
-              <button onClick={() => setServerError("")}>X</button>
-            </div>
-          )}
           <input
             type="text"
             name="title"
@@ -176,7 +159,7 @@ const NewReminder = () => {
             value={time}
             hourPlaceholder="hh"
             minutePlaceholder="mm"
-            required="true"
+            required
           />
           <div className="options">
             <label>Send Notification on?</label>
@@ -213,7 +196,7 @@ const NewReminder = () => {
               />
             </div>
           </div>
-          <button class="btn" type="submit">
+          <button className="btn" type="submit">
             {state.currentId ? "Update" : "Create"}
           </button>
         </form>

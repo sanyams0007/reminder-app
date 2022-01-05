@@ -1,7 +1,7 @@
+require("dotenv").config();
 const express = require("express");
 const cors = require("cors");
 const scheduler = require("./scheduler");
-require("dotenv").config();
 require("./dbs/connection");
 
 /* Routers */

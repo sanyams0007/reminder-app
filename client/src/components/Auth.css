@@ -1,0 +1,54 @@
+.auth_container {
+  display: flex;
+  justify-content: center;
+  height: inherit;
+}
+
+.auth_box {
+  width: 450px;
+  text-align: center;
+}
+.auth_box > h2 {
+  margin-top: 40px;
+}
+.auth_form {
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 1px 10px 0 rgba(0, 0, 0, 0.2);
+  padding: 20px;
+}
+
+.auth_form > input {
+  background-color: #eee;
+  border: none;
+  padding: 8px 12px;
+  margin: 8px 0;
+}
+
+.react-tel-input .form-control {
+  border-radius: 0 !important;
+  width: 100% !important;
+  background-color: #eee !important;
+  border: none !important;
+}
+
+.auth_btn {
+  margin-top: 10px;
+  padding: 10px 15px;
+  border-radius: 3px;
+  text-transform: uppercase;
+  min-height: 30px;
+  background: #86a6df;
+  color: white;
+  letter-spacing: 1px;
+  outline: none;
+  border: none;
+}
+
+.login_btn {
+  background: #e8cbc0;
+}
+.error {
+  margin: 0px 0px 10px;
+  color: #e07c7c;
+}

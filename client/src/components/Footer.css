@@ -6,12 +6,11 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  border-top: 5px solid#364f6b
+  border-top: 5px solid#364f6b;
 }
-
-
 
 .heart {
   color: red;
   padding-top: 5px;
+  vertical-align: sub;
 }

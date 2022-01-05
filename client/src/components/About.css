@@ -1,14 +1,13 @@
 .about_container {
-  padding: 20px 100px 0;
+  padding: 0 100px;
   height: 100%;
 }
 
 .about {
   align-items: center;
   justify-content: center;
-  font-family: "Montserrat";
   display: flex;
-  height: 80vh;
+  height: inherit;
 }
 
 .about_content {

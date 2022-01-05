@@ -2,57 +2,63 @@ import React, { useEffect, useContext } from "react";
 import axios from "axios";
 import { BrowserRouter, Switch, Route, Redirect } from "react-router-dom";
 import ProtectedRoute from "./ProtectedRoute";
-import Login from "./components/Login";
+//import Login from "./components/Login";
+import Log from "./components/Log";
 import Home from "./components/Home";
 import Header from "./components/Header";
 import About from "./components/About";
 import Footer from "./components/Footer";
-import setAuthToken from "./context/setAuthToken";
-import UserAuthContext from "./context/UserAuthContext";
-import { LOAD_USER, SET_REMS, UNSET_REMS, AUTH_ERROR } from "./context/reducer";
 import Dashboard from "./components/Dashboard";
 import Reminders from "./components/Reminders";
 import NewReminder from "./components/NewReminder";
 import Feedback from "./components/Feedback";
 import UserAccount from "./components/UserAccount";
+import Register from "./components/Register";
+
+import setAuthToken from "./context/setAuthToken";
+import UserAuthContext from "./context/UserAuthContext";
+
+import { LOAD_USER, SET_REMS, UNSET_REMS, AUTH_ERROR } from "./context/reducer";
+
+//axios.defaults.baseURL = "https://edayreminder-app.herokuapp.com/";
+axios.defaults.baseURL = "http://localhost:5000/";
 
 function App() {
-  const { state, dispatch } = useContext(UserAuthContext);
+  const {
+    state: { isAuthenticated },
+    dispatch,
+  } = useContext(UserAuthContext);
 
   useEffect(() => {
     const checkLoggedIn = async () => {
-      //get auth token if exist from last visit/session from ls
-      let token = localStorage.getItem("token");
+      //get auth token if exist from last visit/session
+      let token = JSON.parse(localStorage.getItem("token"));
+
       if (token === null) {
-        console.log(token);
+        //console.log(token);
         localStorage.setItem("token", "");
         token = "";
-        console.log(token);
       }
 
       //setAuthToken in header for all subsequent req.
       setAuthToken(token);
 
       //check if token is valid through API and return true or false.
-      const tokenRes = await axios.post(
-        "https://edayreminder-app.herokuapp.com/tokenIsValid"
-      );
+      const tokenRes = await axios.post("users/tokenIsValid");
+      //console.log(tokenRes);
 
       //if token is valid then get user data from private route
       // and send response data from API to state using dispatch
       if (tokenRes.data) {
         try {
-          const user = await axios.get(
-            "https://edayreminder-app.herokuapp.com/users"
-          );
+          const user = await axios.get("users");
           dispatch({
             type: LOAD_USER,
             payload: user.data,
           });
+          //console.log(user);
 
-          const reminders = await axios.get(
-            "https://edayreminder-app.herokuapp.com/reminders"
-          );
+          const reminders = await axios.get("reminders");
           dispatch({
             type: SET_REMS,
             payload: reminders.data,
@@ -77,33 +83,35 @@ function App() {
         <Header />
         <Switch>
           <Route path="/" exact>
-            {state.isAuthenticated ? <Redirect to="/dashboard" /> : <Home />}
+            {isAuthenticated ? <Redirect to="/dashboard" /> : <Home />}
           </Route>
-          <Route path="/login" component={Login} />
+          <Route path="/login" component={Log} />
+          {/* <Route path="/login" component={Login} /> */}
+          <Route path="/register" component={Register} />
           <Route path="/about" component={About} />
           <ProtectedRoute
-            isAuthenticated={state.isAuthenticated}
+            isAuthenticated={isAuthenticated}
             path="/dashboard"
             component={Dashboard}
           />
           <ProtectedRoute
-            isAuthenticated={state.isAuthenticated}
+            isAuthenticated={isAuthenticated}
             path="/reminders"
             component={Reminders}
           />
           <ProtectedRoute
-            isAuthenticated={state.isAuthenticated}
+            isAuthenticated={isAuthenticated}
             path="/create"
             component={NewReminder}
           />
 
           <ProtectedRoute
-            isAuthenticated={state.isAuthenticated}
+            isAuthenticated={isAuthenticated}
             path="/feedback"
             component={Feedback}
           />
           <ProtectedRoute
-            isAuthenticated={state.isAuthenticated}
+            isAuthenticated={isAuthenticated}
             path="/account"
             component={UserAccount}
           />

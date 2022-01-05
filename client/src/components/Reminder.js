@@ -14,9 +14,7 @@ const Reminder = (props) => {
   const deleteReminder = async (_id) => {
     try {
       /* const url = `${baseUrl}/${_id}` */
-      const deletedReminder = await axios.delete(
-        `https://edayreminder-app.herokuapp.com/reminders/${_id}`
-      );
+      const deletedReminder = await axios.delete(`reminders/${_id}`);
       dispatch({
         type: DELETE_REMINDER,
         payload: deletedReminder.data._id,

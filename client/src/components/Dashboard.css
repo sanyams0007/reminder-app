@@ -9,6 +9,7 @@
   display: grid;
   grid-template-columns: 50% 50%;
   grid-template-rows: 50% 50%;
+  background: lavender;
 }
 
 .container > div.box {
@@ -133,6 +134,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: flex-end;
+    overflow: hidden;
   }
   .container > div {
     position: relative;

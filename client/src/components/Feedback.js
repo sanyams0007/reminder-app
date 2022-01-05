@@ -21,11 +21,7 @@ const Feedback = () => {
   const onSubmit = async (e) => {
     e.preventDefault();
     try {
-      const newFeedback = await axios.post(
-        "https://edayreminder-app.herokuapp.com/feedback",
-        feedback
-      );
-      //console.log(newFeedback);
+      await axios.post("feedback", feedback);
     } catch (error) {
       console.log(error.response.data);
     }
@@ -34,9 +30,7 @@ const Feedback = () => {
   useEffect(() => {
     const getFeedback = async () => {
       try {
-        let oldFeedback = await axios.get(
-          "https://edayreminder-app.herokuapp.com/feedback"
-        );
+        let oldFeedback = await axios.get("feedback");
         //console.log(oldFeedback);
         if (oldFeedback?.data === null) {
           setFeedback({
@@ -70,7 +64,7 @@ const Feedback = () => {
               <h2 id="title">Feedback Form </h2>
               <p id="description">
                 <em>
-                  Thank you for taking the time to help us improve the platform
+                  Thank you for taking the time to help us improve the app
                 </em>
               </p>
             </header>
