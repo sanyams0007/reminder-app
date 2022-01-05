@@ -134,6 +134,10 @@ const NewReminder = () => {
       </div>
       <div className="right">
         {error && <p className="error">{error}</p>}
+        <p className="attention">
+          <b> Attention </b>: As of now Message/Phone reminder is available only
+          for Indian Mobile No. due to Trial A/C of Telecom Provider.
+        </p>
         <form onSubmit={onSubmit}>
           <input
             type="text"

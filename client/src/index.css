@@ -40,3 +40,9 @@ input {
   display: flex;
   flex-direction: column;
 }
+
+.error404 {
+  height: 100%;
+  background-color: darkgray;
+  padding: 30px;
+}

@@ -71,6 +71,12 @@
   padding: 2px;
 }
 
+.attention {
+  background-color: #19c781;
+  padding: 5px 3px;
+  margin: 10px 0;
+}
+
 .create_error > button {
   height: 20px;
   border-radius: 50%;
@@ -215,23 +221,27 @@
 
   .right {
     padding: 0;
-    height: 106%;
+    /*  height: 106%; */
     justify-content: center;
+  }
+
+  .attention {
+    margin: 0;
   }
 
   .right form {
     height: 100%;
     width: 100%;
-    position: relative;
+    /* position: relative; */
     justify-content: space-evenly;
     border-radius: 0;
-    top: -20px;
+    /*   top: -20px; */
     padding-top: 30px;
     padding-bottom: 20px;
   }
 
-  .left {
+  /*  .left {
     border-bottom-left-radius: 20px;
     border-bottom-right-radius: 20px;
-  }
+  } */
 }

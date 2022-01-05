@@ -76,8 +76,8 @@ reminderSchema.statics.sendNotifications = function (callback) {
       }
       if (reminder.phone) {
         console.log("Sending Message @ ", reminder.userPhone);
-        //sendMessage(reminder);
-        sendWhatsApp(reminder);
+        sendMessage(reminder);
+        //sendWhatsApp(reminder);
       }
     });
     if (callback) {
@@ -137,20 +137,20 @@ reminderSchema.statics.sendNotifications = function (callback) {
     }
   }
 
-  async function sendWhatsApp(reminder) {
+  /* async function sendWhatsApp(reminder) {
     try {
       client.messages
         .create({
           body: reminder.message,
-          from: "whatsapp:+14155238886",
-          to: `whatsapp:+91${reminder.userPhone}`,
+          from: `whatsapp:+${process.env.TWILIO_NUMBER}`,
+          to: `whatsapp:+${reminder.userPhone}`,
         })
         .then((message) => console.log("Sended @WhatsApp", message))
         .done();
     } catch (error) {
       console.log(error);
     }
-  }
+  } */
 };
 
 const Reminder = mongoose.model("reminder", reminderSchema);

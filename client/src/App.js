@@ -2,8 +2,8 @@ import React, { useEffect, useContext } from "react";
 import axios from "axios";
 import { BrowserRouter, Switch, Route, Redirect } from "react-router-dom";
 import ProtectedRoute from "./ProtectedRoute";
-//import Login from "./components/Login";
-import Log from "./components/Log";
+//import OldLogin from "./components/OldLogin";
+import Login from "./components/Login";
 import Home from "./components/Home";
 import Header from "./components/Header";
 import About from "./components/About";
@@ -14,6 +14,7 @@ import NewReminder from "./components/NewReminder";
 import Feedback from "./components/Feedback";
 import UserAccount from "./components/UserAccount";
 import Register from "./components/Register";
+import Error404 from "./components/Error404";
 
 import setAuthToken from "./context/setAuthToken";
 import UserAuthContext from "./context/UserAuthContext";
@@ -35,7 +36,6 @@ function App() {
       let token = JSON.parse(localStorage.getItem("token"));
 
       if (token === null) {
-        //console.log(token);
         localStorage.setItem("token", "");
         token = "";
       }
@@ -45,7 +45,6 @@ function App() {
 
       //check if token is valid through API and return true or false.
       const tokenRes = await axios.post("users/tokenIsValid");
-      //console.log(tokenRes);
 
       //if token is valid then get user data from private route
       // and send response data from API to state using dispatch
@@ -56,7 +55,6 @@ function App() {
             type: LOAD_USER,
             payload: user.data,
           });
-          //console.log(user);
 
           const reminders = await axios.get("reminders");
           dispatch({
@@ -85,8 +83,8 @@ function App() {
           <Route path="/" exact>
             {isAuthenticated ? <Redirect to="/dashboard" /> : <Home />}
           </Route>
-          <Route path="/login" component={Log} />
-          {/* <Route path="/login" component={Login} /> */}
+          <Route path="/login" component={Login} />
+          {/* <Route path="/login" component={OldLogin} /> */}
           <Route path="/register" component={Register} />
           <Route path="/about" component={About} />
           <ProtectedRoute
@@ -115,7 +113,7 @@ function App() {
             path="/account"
             component={UserAccount}
           />
-          <Route path="*" component={() => <h1>404 ERROR</h1>} />
+          <Route path="*" component={Error404} />
         </Switch>
         <Footer />
       </BrowserRouter>

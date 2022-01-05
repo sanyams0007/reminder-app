@@ -77,8 +77,8 @@ const Register = ({ history }) => {
             autoComplete="false"
             required
           />
-          {/*  <input
-            type="number"
+          <input
+            type="tel"
             name="phone"
             maxLength="10"
             placeholder="Phone Number"
@@ -86,19 +86,20 @@ const Register = ({ history }) => {
             onChange={handleRegisterData}
             required
             autoComplete="false"
-          /> */}
-          <PhoneInput
+          />
+          {/* <PhoneInput
             country={"in"}
             inputProps={{
               name: "phone",
               required: true,
             }}
             value={registerData.phone}
-            onChange={(phone, country, e) => {
+            onChange={(phone, country, e, _) => {
+              //console.log(e.target.value, { phone, country, _ });
               e.target.value = phone;
               handleRegisterData(e);
             }}
-          />
+          /> */}
           <input
             type="password"
             name="password"

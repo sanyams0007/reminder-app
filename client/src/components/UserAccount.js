@@ -23,6 +23,10 @@ const UserAccount = () => {
             <span>{state.user.phone}</span>
           </div>
           <p>Total Reminder: {state.reminders.length}</p>
+          {/* <p>
+            To get reminder on WhatsApp send a message from your device to
+            <b> +1 415 523 8886 </b> with text <b>"join order-directly"</b>.
+          </p> */}
         </div>
       </div>
     </div>
