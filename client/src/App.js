@@ -21,8 +21,8 @@ import UserAuthContext from "./context/UserAuthContext";
 
 import { LOAD_USER, SET_REMS, UNSET_REMS, AUTH_ERROR } from "./context/reducer";
 
-//axios.defaults.baseURL = "https://edayreminder-app.herokuapp.com/";
-axios.defaults.baseURL = "http://localhost:5000/";
+axios.defaults.baseURL = "https://edayreminder-app.herokuapp.com/";
+//axios.defaults.baseURL = "http://localhost:5000/";
 
 function App() {
   const {
