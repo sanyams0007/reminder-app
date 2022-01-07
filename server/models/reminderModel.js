@@ -1,11 +1,11 @@
 const mongoose = require("mongoose");
 const nodemailer = require("nodemailer");
 const fast2sms = require("fast-two-sms");
-const twilio = require("twilio");
+/* const twilio = require("twilio");
 
 const accountSid = process.env.ACCOUNT_SID; // Your Account SID from www.twilio.com/console
 const authToken = process.env.AUTH_TOKEN; // Your Auth Token from www.twilio.com/console
-const client = new twilio(accountSid, authToken);
+const client = new twilio(accountSid, authToken); */
 
 const reminderSchema = mongoose.Schema({
   title: {
