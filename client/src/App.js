@@ -21,10 +21,7 @@ import UserAuthContext from "./context/UserAuthContext";
 
 import { LOAD_USER, SET_REMS, UNSET_REMS, AUTH_ERROR } from "./context/reducer";
 
-let url = "http://localhost:5000/";
-if (process.env.ENVIRONMENT === "PRODUCTION")
-  url = "https://edayreminder.onrender.com/";
-axios.defaults.baseURL = url;
+axios.defaults.baseURL = "https://edayreminder.onrender.com/";
 
 function App() {
   const {
