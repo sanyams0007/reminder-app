@@ -24,7 +24,7 @@ import { LOAD_USER, SET_REMS, UNSET_REMS, AUTH_ERROR } from "./context/reducer";
 let backend = "http://localhost:5000/";
 if (process.env.ENVIRONMENT === "PRODUCTION")
   url = "https://edayreminder.onrender.com/";
-axios.defaults.baseURL = url;
+axios.defaults.baseURL = backend;
 
 function App() {
   const {
